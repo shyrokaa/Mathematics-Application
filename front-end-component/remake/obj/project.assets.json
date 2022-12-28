@@ -60,11 +60,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\university\\4\\licenta\\temp\\front-end-component\\remake\\MathApp.csproj",
+      "projectUniqueName": "E:\\university\\4\\licenta\\repo\\Mathematics-Application\\front-end-component\\remake\\MathApp.csproj",
       "projectName": "MathApp",
-      "projectPath": "E:\\university\\4\\licenta\\temp\\front-end-component\\remake\\MathApp.csproj",
+      "projectPath": "E:\\university\\4\\licenta\\repo\\Mathematics-Application\\front-end-component\\remake\\MathApp.csproj",
       "packagesPath": "C:\\Users\\Shyrokaa\\.nuget\\packages\\",
-      "outputPath": "E:\\university\\4\\licenta\\temp\\front-end-component\\remake\\obj\\",
+      "outputPath": "E:\\university\\4\\licenta\\repo\\Mathematics-Application\\front-end-component\\remake\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Shyrokaa\\AppData\\Roaming\\NuGet\\NuGet.Config",

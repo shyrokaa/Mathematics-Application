@@ -52,9 +52,6 @@ namespace MathApp.secondary_objects
             //another library to add to the documentation
             string output = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObj, Newtonsoft.Json.Formatting.Indented);
             File.WriteAllText(configPath, output);
-
         }
-
-
     }
 }

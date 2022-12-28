@@ -1,13 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="ui object\UserWindow.cs">
+    <Compile Update="ui object\SignInWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ui object\OptionsWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ui object\MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ui object\SignUpWindow.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

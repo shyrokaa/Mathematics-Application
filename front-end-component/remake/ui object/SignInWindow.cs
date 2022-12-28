@@ -11,9 +11,9 @@ using System.Windows.Forms;
 namespace remake
 {
     // This object should only be accessible when the network mode is enabled -> it also provides other functionalities for other classes
-    public partial class UserWindow : Form
+    public partial class SignInWindow : Form
     {
-        public UserWindow()
+        public SignInWindow()
         {
             InitializeComponent();
         }

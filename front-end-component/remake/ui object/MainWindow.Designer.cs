@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.signIn_btn = new System.Windows.Forms.Button();
+            this.signUp_btn = new System.Windows.Forms.Button();
+            this.signOut_btn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -70,9 +70,9 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(23)))), ((int)(((byte)(43)))));
-            this.panel3.Controls.Add(this.button9);
-            this.panel3.Controls.Add(this.button8);
-            this.panel3.Controls.Add(this.button7);
+            this.panel3.Controls.Add(this.signIn_btn);
+            this.panel3.Controls.Add(this.signUp_btn);
+            this.panel3.Controls.Add(this.signOut_btn);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.pictureBox1);
@@ -82,45 +82,45 @@
             this.panel3.Size = new System.Drawing.Size(216, 138);
             this.panel3.TabIndex = 6;
             // 
-            // button9
+            // signIn_btn
             // 
-            this.button9.FlatAppearance.BorderSize = 0;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Location = new System.Drawing.Point(138, 83);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
-            this.button9.TabIndex = 5;
-            this.button9.Text = "signUp";
-            this.button9.UseVisualStyleBackColor = true;
+            this.signIn_btn.FlatAppearance.BorderSize = 0;
+            this.signIn_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.signIn_btn.Location = new System.Drawing.Point(145, 83);
+            this.signIn_btn.Name = "signIn_btn";
+            this.signIn_btn.Size = new System.Drawing.Size(63, 23);
+            this.signIn_btn.TabIndex = 6;
+            this.signIn_btn.Text = "signIn";
+            this.signIn_btn.UseVisualStyleBackColor = true;
+            this.signIn_btn.Click += new System.EventHandler(this.button8_Click_1);
             // 
-            // button8
+            // signUp_btn
             // 
-            this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(23)))), ((int)(((byte)(43)))));
-            this.button8.FlatAppearance.BorderSize = 0;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Location = new System.Drawing.Point(138, 54);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 4;
-            this.button8.Text = "signIn";
-            this.button8.UseVisualStyleBackColor = false;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.signUp_btn.FlatAppearance.BorderSize = 0;
+            this.signUp_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.signUp_btn.Location = new System.Drawing.Point(145, 112);
+            this.signUp_btn.Name = "signUp_btn";
+            this.signUp_btn.Size = new System.Drawing.Size(63, 23);
+            this.signUp_btn.TabIndex = 5;
+            this.signUp_btn.Text = "signUp";
+            this.signUp_btn.UseVisualStyleBackColor = true;
+            this.signUp_btn.Click += new System.EventHandler(this.button9_Click);
             // 
-            // button7
+            // signOut_btn
             // 
-            this.button7.FlatAppearance.BorderSize = 0;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Location = new System.Drawing.Point(138, 112);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 3;
-            this.button7.Text = "signOut";
-            this.button7.UseVisualStyleBackColor = true;
+            this.signOut_btn.FlatAppearance.BorderSize = 0;
+            this.signOut_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.signOut_btn.Location = new System.Drawing.Point(7, 112);
+            this.signOut_btn.Name = "signOut_btn";
+            this.signOut_btn.Size = new System.Drawing.Size(63, 23);
+            this.signOut_btn.TabIndex = 3;
+            this.signOut_btn.Text = "signOut";
+            this.signOut_btn.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(84, 43);
+            this.label2.Location = new System.Drawing.Point(84, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 15);
             this.label2.TabIndex = 2;
@@ -129,7 +129,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(84, 28);
+            this.label1.Location = new System.Drawing.Point(84, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 15);
             this.label1.TabIndex = 1;
@@ -137,6 +137,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.pictureBox1.Location = new System.Drawing.Point(8, 7);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(70, 70);
@@ -375,7 +376,7 @@
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(87)))), ((int)(((byte)(120)))));
             this.panel5.Location = new System.Drawing.Point(191, 12);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(13, 449);
+            this.panel5.Size = new System.Drawing.Size(10, 449);
             this.panel5.TabIndex = 8;
             // 
             // MainWindow
@@ -389,6 +390,7 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
             this.Text = "MainWindow";
@@ -423,9 +425,8 @@
         private ToolStripMenuItem help;
         private ToolStripMenuItem about;
         private ToolStripMenuItem settings;
-        private Button button9;
-        private Button button8;
-        private Button button7;
+        private Button signUp_btn;
+        private Button signOut_btn;
         private Panel panel4;
         private Button button6;
         private Button button5;
@@ -439,5 +440,6 @@
         private Label label6;
         private Label label4;
         private TextBox textBox1;
+        private Button signIn_btn;
     }
 }
