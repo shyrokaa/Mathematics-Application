@@ -34,13 +34,10 @@ namespace remake
 
 
         // API ACCESS RELATED FUNCTIONS
-
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }
-
-
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
@@ -78,7 +75,7 @@ namespace remake
         /// </summary>
         private void button8_Click_1(object sender, EventArgs e)
         {
-            SignInWindow temporarySignInWindow = new SignInWindow();
+            SignInWindow temporarySignInWindow = new SignInWindow(this._currentSetup);
             temporarySignInWindow.ShowDialog();
 
         }
@@ -88,7 +85,7 @@ namespace remake
         /// </summary>
         private void button9_Click(object sender, EventArgs e)
         {
-            SignUpWindow temporarySignUpWindow = new SignUpWindow();
+            SignUpWindow temporarySignUpWindow = new SignUpWindow(_currentSetup);
             temporarySignUpWindow.ShowDialog();
         }
 

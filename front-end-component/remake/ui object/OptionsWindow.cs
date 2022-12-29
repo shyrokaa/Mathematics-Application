@@ -50,13 +50,11 @@ namespace remake
             switch (this._currentSetup.selectedTheme)
             {
                 case "Dark":
-                    //applying dark theme
                     applyTheme(this._currentSetup.darkTheme);
                     this.radioButton1.Checked = true;
                     this.radioButton2.Checked = false;
                     break;
                 case "Light":
-                    //applying white theme
                     applyTheme(this._currentSetup.lightTheme);
                     this.radioButton1.Checked = false;
                     this.radioButton2.Checked = true;
