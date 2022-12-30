@@ -67,9 +67,10 @@
             // 
             // textBox3
             // 
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox3.Location = new System.Drawing.Point(28, 217);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(189, 35);
+            this.textBox3.Size = new System.Drawing.Size(189, 28);
             this.textBox3.TabIndex = 7;
             // 
             // button2
@@ -114,16 +115,18 @@
             // 
             // textBox1
             // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Location = new System.Drawing.Point(28, 81);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(189, 35);
+            this.textBox1.Size = new System.Drawing.Size(189, 28);
             this.textBox1.TabIndex = 0;
             // 
             // textBox2
             // 
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.Location = new System.Drawing.Point(28, 149);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(189, 35);
+            this.textBox2.Size = new System.Drawing.Size(189, 28);
             this.textBox2.TabIndex = 1;
             // 
             // SignUpWindow

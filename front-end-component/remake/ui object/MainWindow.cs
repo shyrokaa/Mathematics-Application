@@ -20,6 +20,7 @@ namespace remake
     {
         private JsonParser _configMaker;
         private Setup _currentSetup;
+        private int _equationMode;
 
         /// <summary>
         /// Default constructor that also initializes the configuration elements
@@ -28,7 +29,8 @@ namespace remake
         {
             this._configMaker = new JsonParser();
             InitializeComponent();
-            this._currentSetup = _configMaker.parseData();     
+            this._currentSetup = _configMaker.parseData();
+            this._equationMode = 0;
             updateSetup();
         }
 
@@ -121,6 +123,40 @@ namespace remake
             this.button12.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
         }
 
+
+        private void setButtonTheme(ColorScheme c)
+        {
+            this.button1.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
+            this.button2.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
+            this.button3.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
+            this.button4.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
+
+
+            switch (this._equationMode)
+            {
+                case 1:
+                    this.button1.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_ribbon);
+                    break;
+
+                case 2:
+                    this.button2.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_ribbon);
+                    break;
+
+                case 3:
+                    this.button3.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_ribbon);
+                    break;
+
+                case 4:
+                    this.button4.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_ribbon);
+                    break;
+
+                default:
+                    break;
+            }
+
+        }
+
+
         /// <summary>
         /// Function that applies the current configuration for the app
         /// </summary>
@@ -131,14 +167,19 @@ namespace remake
                 case "Dark":
                     //applying dark theme
                     applyTheme(this._currentSetup.darkTheme);
+                    setButtonTheme(this._currentSetup.darkTheme);
                     break;
                 case "Light":
                     //applying white theme
                     applyTheme(this._currentSetup.lightTheme);
+                    setButtonTheme(this._currentSetup.lightTheme);
                     break;
             }
+
             //user panel update -> too many controls for one function
             updateUserPanel(!this._currentSetup.networkDisabled);
+            //equation mode handler -> used for the equation solving process
+
         }
 
         /// <summary>
@@ -155,7 +196,28 @@ namespace remake
             this.label2.Visible = isEnabled;
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this._equationMode = 1;
+            updateSetup();
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this._equationMode = 2;
+            updateSetup();
+        }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this._equationMode = 3;
+            updateSetup();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this._equationMode = 4;
+            updateSetup();
+        }
     }
 }

@@ -45,6 +45,15 @@ namespace MathApp.ui_object
             this.panel1.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_panel_bg);
             this.button2.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
 
+            //textbox
+            this.textBox1.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
+            this.textBox2.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
+            this.textBox3.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
+
+            this.textBox1.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
+            this.textBox2.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
+            this.textBox3.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
+
         }
 
         /// <summary>
