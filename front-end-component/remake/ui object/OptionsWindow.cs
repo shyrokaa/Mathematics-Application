@@ -47,25 +47,23 @@ namespace remake
         /// </summary>
         private void updateSetup()
         {
-            switch (this._currentSetup.selectedTheme)
+            switch (this._currentSetup.SelectedTheme)
             {
                 case "Dark":
-                    applyTheme(this._currentSetup.darkTheme);
+                    applyTheme(this._currentSetup.DarkTheme);
                     this.radioButton1.Checked = true;
                     this.radioButton2.Checked = false;
                     break;
                 case "Light":
-                    applyTheme(this._currentSetup.lightTheme);
+                    applyTheme(this._currentSetup.LightTheme);
                     this.radioButton1.Checked = false;
                     this.radioButton2.Checked = true;
                     break;
             }
-            
-            if (this._currentSetup.networkDisabled)
-                this.checkBox1.Checked = true;
-            else
-                this.checkBox1.Checked = false;
+
+            this.checkBox1.Checked = this._currentSetup.NetworkDisabled;
         }
+
 
         /// UI RELATED FUNCTIONS
 
@@ -75,9 +73,9 @@ namespace remake
         private void button2_Click(object sender, EventArgs e)
         {
             if(radioButton1.Checked)
-                _configMaker.updateJson(this.checkBox1.Checked,radioButton1.Text);
+                _configMaker.UpdateJson(this.checkBox1.Checked,radioButton1.Text);
             else
-                _configMaker.updateJson(this.checkBox1.Checked, radioButton2.Text);
+                _configMaker.UpdateJson(this.checkBox1.Checked, radioButton2.Text);
 
             this.Close();
         }

@@ -61,13 +61,13 @@ namespace MathApp.ui_object
         /// </summary>
         private void updateSetup()
         {
-            switch (this._currentSetup.selectedTheme)
+            switch (this._currentSetup.SelectedTheme)
             {
                 case "Dark":
-                    applyTheme(this._currentSetup.darkTheme);
+                    applyTheme(this._currentSetup.DarkTheme);
                     break;
                 case "Light":
-                    applyTheme(this._currentSetup.lightTheme);
+                    applyTheme(this._currentSetup.LightTheme);
                     break;
             }
 

@@ -7,9 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Windows.Forms.VisualStyles;
 using MathApp.secondary_objects;
 using MathApp.ui_object;
+using OxyPlot;
+using OxyPlot.Series;
+using OxyPlot.WindowsForms;
 
 namespace remake
 {
@@ -18,9 +21,19 @@ namespace remake
     /// </summary>
     public partial class MainWindow : Form
     {
+
+        // this handles the modes in which the application is running
+        private int _selectedMode;
+        
+        
         private JsonParser _configMaker;
         private Setup _currentSetup;
         private int _equationMode;
+        
+        // chart used in the data display - added here due to the toolbox not being able to see the refference to it
+        private PlotModel _plotModel;
+        private PlotView _plotView;
+
 
         /// <summary>
         /// Default constructor that also initializes the configuration elements
@@ -29,8 +42,19 @@ namespace remake
         {
             this._configMaker = new JsonParser();
             InitializeComponent();
-            this._currentSetup = _configMaker.parseData();
+            this._currentSetup = _configMaker.ParseData();
             this._equationMode = 0;
+
+            // not a clean solution to the chart problem 
+            this._plotModel = new PlotModel();
+            this._plotView = new PlotView();
+
+            var functionSeries = new FunctionSeries(Math.Sin, 0, 10, 0.1, "sin(x)");
+            this._plotModel.Series.Add(functionSeries);
+            this._plotView.Model = this._plotModel;
+
+            this._plotView.Dock = DockStyle.Fill;
+            this.chart_panel.Controls.Add(this._plotView);
             updateSetup();
         }
 
@@ -67,7 +91,7 @@ namespace remake
             OptionsWindow temporaryOptionWindow = new OptionsWindow(this._currentSetup);
             temporaryOptionWindow.ShowDialog();
 
-            this._currentSetup = _configMaker.parseData();
+            this._currentSetup = _configMaker.ParseData();
             this.updateSetup();
         }
 
@@ -162,22 +186,22 @@ namespace remake
         /// </summary>
         private void updateSetup()
         {
-            switch (this._currentSetup.selectedTheme)
+            switch (this._currentSetup.SelectedTheme)
             {
                 case "Dark":
                     //applying dark theme
-                    applyTheme(this._currentSetup.darkTheme);
-                    setButtonTheme(this._currentSetup.darkTheme);
+                    applyTheme(this._currentSetup.DarkTheme);
+                    setButtonTheme(this._currentSetup.DarkTheme);
                     break;
                 case "Light":
                     //applying white theme
-                    applyTheme(this._currentSetup.lightTheme);
-                    setButtonTheme(this._currentSetup.lightTheme);
+                    applyTheme(this._currentSetup.LightTheme);
+                    setButtonTheme(this._currentSetup.LightTheme);
                     break;
             }
 
             //user panel update -> too many controls for one function
-            updateUserPanel(!this._currentSetup.networkDisabled);
+            updateUserPanel(!this._currentSetup.NetworkDisabled);
             //equation mode handler -> used for the equation solving process
 
         }

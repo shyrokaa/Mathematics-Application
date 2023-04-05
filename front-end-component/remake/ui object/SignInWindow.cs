@@ -84,17 +84,17 @@ namespace remake
         /// </summary>
         private void updateSetup()
         {
-            switch (this._currentSetup.selectedTheme)
+            switch (this._currentSetup.SelectedTheme)
             {
                 case "Dark":
-                    applyTheme(this._currentSetup.darkTheme);
-                    this.pictureBox1.Image = _currentSetup.darkUser;
-                    this.pictureBox2.Image = _currentSetup.darkLock;
+                    applyTheme(this._currentSetup.DarkTheme);
+                    this.pictureBox1.Image = _currentSetup.DarkUser;
+                    this.pictureBox2.Image = _currentSetup.DarkLock;
                     break;
                 case "Light":
-                    applyTheme(this._currentSetup.lightTheme);
-                    this.pictureBox1.Image = _currentSetup.lightUser;
-                    this.pictureBox2.Image = _currentSetup.lightLock;
+                    applyTheme(this._currentSetup.LightTheme);
+                    this.pictureBox1.Image = _currentSetup.LightUser;
+                    this.pictureBox2.Image = _currentSetup.LightLock;
                     break;
             }
 

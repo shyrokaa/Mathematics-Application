@@ -6,47 +6,36 @@ using System.Threading.Tasks;
 
 namespace MathApp.secondary_objects
 {
-    /// <summary>
-    /// Class <c>MainWindow</c> defines an object that stores the application configuration
-    /// </summary>
     public class Setup
     {
-        public ColorScheme darkTheme;
-        public ColorScheme lightTheme;
-        public String selectedTheme;
-        public bool networkDisabled;
-        // Image objects for some of the UI elements 
-        public Image darkLock;
-        public Image lightLock;
-        public Image darkUser;
-        public Image lightUser;
+        public ColorScheme DarkTheme { get; }
+        public ColorScheme LightTheme { get; }
+        public string SelectedTheme { get; }
+        public bool NetworkDisabled { get; }
+        public Image DarkLock { get; }
+        public Image LightLock { get; }
+        public Image DarkUser { get; }
+        public Image LightUser { get; }
 
-        /// <summary>
-        /// Constructor that initializes the object using the values gathered from the config.json file
-        /// </summary>
-        public Setup(bool networkDisabled, String selectedTheme)
+        public Setup(bool networkDisabled, string selectedTheme)
         {
-            this.networkDisabled = networkDisabled;
-            this.selectedTheme= selectedTheme;
-            this.darkTheme = new ColorScheme("#0D0C1A", "#CD1748", "#1C172B", "#41314C", "#7A5778");
-            this.lightTheme = new ColorScheme("#7DAA92", "#3D2B3D", "#466365", "#AE847E", "#F7F7FF");
+            NetworkDisabled = networkDisabled;
+            SelectedTheme = selectedTheme;
 
-            string filePath = Path.Combine(TryGetSolutionDirectoryInfo().Parent.FullName, "front-end-component/remake/resources");
-            
-            this.darkLock = Image.FromFile(filePath + "/lock_icon_dark.png");
-            this.lightLock = Image.FromFile(filePath + "/lock_icon_light.png");
-            this.darkUser = Image.FromFile(filePath + "/user_icon_dark.png");
-            this.lightUser = Image.FromFile(filePath + "/user_icon_light.png");
+            string filePath = Path.Combine(TryGetSolutionDirectoryInfo()?.Parent?.FullName, "front-end-component/remake/resources");
 
+            DarkLock = Image.FromFile(Path.Combine(filePath, "lock_icon_dark.png"));
+            LightLock = Image.FromFile(Path.Combine(filePath, "lock_icon_light.png"));
+            DarkUser = Image.FromFile(Path.Combine(filePath, "user_icon_dark.png"));
+            LightUser = Image.FromFile(Path.Combine(filePath, "user_icon_light.png"));
+
+            DarkTheme = new ColorScheme("#0D0C1A", "#CD1748", "#1C172B", "#41314C", "#7A5778");
+            LightTheme = new ColorScheme("#7DAA92", "#3D2B3D", "#466365", "#AE847E", "#F7F7FF");
         }
 
-        /// <summary>
-        /// Function that gets the current work directory from the system path
-        /// </summary>
         private static DirectoryInfo TryGetSolutionDirectoryInfo(string currentPath = null)
         {
-            var directory = new DirectoryInfo(
-                currentPath ?? Directory.GetCurrentDirectory());
+            DirectoryInfo directory = new DirectoryInfo(currentPath ?? Directory.GetCurrentDirectory());
             while (directory != null && !directory.GetFiles("*.sln").Any())
             {
                 directory = directory.Parent;
@@ -54,4 +43,5 @@ namespace MathApp.secondary_objects
             return directory;
         }
     }
+
 }
