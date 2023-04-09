@@ -36,9 +36,13 @@
             label1 = new Label();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
+            label4 = new Label();
+            label8 = new Label();
+            label7 = new Label();
+            textBox4 = new TextBox();
+            textBox3 = new TextBox();
             textBox2 = new TextBox();
             label6 = new Label();
-            label4 = new Label();
             button12 = new Button();
             textBox1 = new TextBox();
             panel1 = new Panel();
@@ -52,13 +56,13 @@
             about = new ToolStripMenuItem();
             settings = new ToolStripMenuItem();
             panel4 = new Panel();
+            chart_panel = new Panel();
             label5 = new Label();
             button11 = new Button();
             button10 = new Button();
             button6 = new Button();
             button5 = new Button();
             panel5 = new Panel();
-            chart_panel = new Panel();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -70,23 +74,20 @@
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(28, 23, 43);
-            panel3.Controls.Add(signIn_btn);
-            panel3.Controls.Add(signUp_btn);
-            panel3.Controls.Add(signOut_btn);
             panel3.Controls.Add(label2);
             panel3.Controls.Add(label1);
             panel3.Controls.Add(pictureBox1);
             panel3.ForeColor = Color.FromArgb(205, 23, 72);
-            panel3.Location = new Point(488, 12);
+            panel3.Location = new Point(607, 12);
             panel3.Name = "panel3";
-            panel3.Size = new Size(216, 138);
+            panel3.Size = new Size(97, 138);
             panel3.TabIndex = 6;
             // 
             // signIn_btn
             // 
             signIn_btn.FlatAppearance.BorderSize = 0;
             signIn_btn.FlatStyle = FlatStyle.Flat;
-            signIn_btn.Location = new Point(145, 83);
+            signIn_btn.Location = new Point(431, 37);
             signIn_btn.Name = "signIn_btn";
             signIn_btn.Size = new Size(63, 23);
             signIn_btn.TabIndex = 6;
@@ -98,7 +99,7 @@
             // 
             signUp_btn.FlatAppearance.BorderSize = 0;
             signUp_btn.FlatStyle = FlatStyle.Flat;
-            signUp_btn.Location = new Point(145, 112);
+            signUp_btn.Location = new Point(431, 8);
             signUp_btn.Name = "signUp_btn";
             signUp_btn.Size = new Size(63, 23);
             signUp_btn.TabIndex = 5;
@@ -110,7 +111,7 @@
             // 
             signOut_btn.FlatAppearance.BorderSize = 0;
             signOut_btn.FlatStyle = FlatStyle.Flat;
-            signOut_btn.Location = new Point(7, 112);
+            signOut_btn.Location = new Point(431, 66);
             signOut_btn.Name = "signOut_btn";
             signOut_btn.Size = new Size(63, 23);
             signOut_btn.TabIndex = 3;
@@ -120,7 +121,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(84, 37);
+            label2.Location = new Point(14, 98);
             label2.Name = "label2";
             label2.Size = new Size(38, 15);
             label2.TabIndex = 2;
@@ -129,16 +130,16 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(84, 13);
+            label1.Location = new Point(14, 83);
             label1.Name = "label1";
-            label1.Size = new Size(38, 15);
+            label1.Size = new Size(60, 15);
             label1.TabIndex = 1;
-            label1.Text = "label1";
+            label1.Text = "Username";
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = SystemColors.ControlDarkDark;
-            pictureBox1.Location = new Point(8, 7);
+            pictureBox1.Location = new Point(14, 9);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(70, 70);
             pictureBox1.TabIndex = 0;
@@ -147,24 +148,74 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(28, 23, 43);
+            panel2.Controls.Add(label4);
+            panel2.Controls.Add(label8);
+            panel2.Controls.Add(label7);
+            panel2.Controls.Add(button10);
+            panel2.Controls.Add(textBox4);
+            panel2.Controls.Add(textBox3);
             panel2.Controls.Add(textBox2);
             panel2.Controls.Add(label6);
-            panel2.Controls.Add(label4);
             panel2.Controls.Add(button12);
             panel2.Controls.Add(textBox1);
             panel2.ForeColor = Color.FromArgb(205, 23, 72);
             panel2.Location = new Point(207, 12);
             panel2.Name = "panel2";
-            panel2.Size = new Size(275, 138);
+            panel2.Size = new Size(394, 138);
             panel2.TabIndex = 5;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(18, 83);
+            label4.Name = "label4";
+            label4.Size = new Size(54, 15);
+            label4.TabIndex = 10;
+            label4.Text = "Solution:";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(278, 37);
+            label8.Name = "label8";
+            label8.Size = new Size(67, 15);
+            label8.TabIndex = 16;
+            label8.Text = "Interval top";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(256, 58);
+            label7.Name = "label7";
+            label7.Size = new Size(89, 15);
+            label7.TabIndex = 15;
+            label7.Text = "Interval bottom";
+            // 
+            // textBox4
+            // 
+            textBox4.BorderStyle = BorderStyle.None;
+            textBox4.Location = new Point(351, 37);
+            textBox4.Multiline = true;
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(28, 15);
+            textBox4.TabIndex = 14;
+            // 
+            // textBox3
+            // 
+            textBox3.BorderStyle = BorderStyle.None;
+            textBox3.Location = new Point(351, 58);
+            textBox3.Multiline = true;
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(28, 15);
+            textBox3.TabIndex = 13;
             // 
             // textBox2
             // 
             textBox2.BorderStyle = BorderStyle.None;
-            textBox2.Location = new Point(79, 58);
+            textBox2.Location = new Point(79, 83);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(176, 48);
+            textBox2.Size = new Size(300, 48);
             textBox2.TabIndex = 12;
             // 
             // label6
@@ -176,25 +227,17 @@
             label6.TabIndex = 11;
             label6.Text = "Request:";
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(20, 62);
-            label4.Name = "label4";
-            label4.Size = new Size(54, 15);
-            label4.TabIndex = 10;
-            label4.Text = "Solution:";
-            // 
             // button12
             // 
             button12.FlatAppearance.BorderSize = 0;
             button12.FlatStyle = FlatStyle.Flat;
-            button12.Location = new Point(3, 112);
+            button12.Location = new Point(321, 8);
             button12.Name = "button12";
-            button12.Size = new Size(269, 23);
+            button12.Size = new Size(70, 23);
             button12.TabIndex = 7;
             button12.Text = "Compute ";
             button12.UseVisualStyleBackColor = true;
+            button12.Click += button12_Click;
             // 
             // textBox1
             // 
@@ -202,7 +245,7 @@
             textBox1.Location = new Point(79, 13);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(176, 39);
+            textBox1.Size = new Size(176, 15);
             textBox1.TabIndex = 9;
             // 
             // panel1
@@ -264,7 +307,7 @@
             button2.Name = "button2";
             button2.Size = new Size(167, 23);
             button2.TabIndex = 4;
-            button2.Text = "2nd degree Equation";
+            button2.Text = "Equation";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
@@ -315,10 +358,12 @@
             // panel4
             // 
             panel4.BackColor = Color.FromArgb(28, 23, 43);
+            panel4.Controls.Add(signOut_btn);
+            panel4.Controls.Add(signIn_btn);
+            panel4.Controls.Add(signUp_btn);
             panel4.Controls.Add(chart_panel);
             panel4.Controls.Add(label5);
             panel4.Controls.Add(button11);
-            panel4.Controls.Add(button10);
             panel4.Controls.Add(button6);
             panel4.Controls.Add(button5);
             panel4.ForeColor = Color.FromArgb(205, 23, 72);
@@ -327,35 +372,42 @@
             panel4.Size = new Size(497, 305);
             panel4.TabIndex = 7;
             // 
+            // chart_panel
+            // 
+            chart_panel.Location = new Point(20, 26);
+            chart_panel.Name = "chart_panel";
+            chart_panel.Size = new Size(405, 247);
+            chart_panel.TabIndex = 7;
+            // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(234, 8);
+            label5.Location = new Point(215, 8);
             label5.Name = "label5";
-            label5.Size = new Size(38, 15);
+            label5.Size = new Size(56, 15);
             label5.TabIndex = 6;
-            label5.Text = "label5";
+            label5.Text = "Plot View";
             // 
             // button11
             // 
             button11.FlatAppearance.BorderSize = 0;
             button11.FlatStyle = FlatStyle.Flat;
-            button11.Location = new Point(414, 270);
+            button11.Location = new Point(431, 279);
             button11.Name = "button11";
-            button11.Size = new Size(75, 23);
+            button11.Size = new Size(63, 23);
             button11.TabIndex = 5;
-            button11.Text = "button11";
+            button11.Text = "Save";
             button11.UseVisualStyleBackColor = true;
             // 
             // button10
             // 
             button10.FlatAppearance.BorderSize = 0;
             button10.FlatStyle = FlatStyle.Flat;
-            button10.Location = new Point(333, 270);
+            button10.Location = new Point(261, 8);
             button10.Name = "button10";
-            button10.Size = new Size(75, 23);
+            button10.Size = new Size(63, 23);
             button10.TabIndex = 4;
-            button10.Text = "button10";
+            button10.Text = "History";
             button10.UseVisualStyleBackColor = true;
             // 
             // button6
@@ -383,13 +435,6 @@
             panel5.Name = "panel5";
             panel5.Size = new Size(10, 449);
             panel5.TabIndex = 8;
-            // 
-            // chart_panel
-            // 
-            chart_panel.Location = new Point(20, 26);
-            chart_panel.Name = "chart_panel";
-            chart_panel.Size = new Size(469, 238);
-            chart_panel.TabIndex = 7;
             // 
             // MainWindow
             // 
@@ -452,5 +497,9 @@
         private Button signIn_btn;
         private TextBox textBox2;
         private Panel chart_panel;
+        private Label label8;
+        private Label label7;
+        private TextBox textBox4;
+        private TextBox textBox3;
     }
 }

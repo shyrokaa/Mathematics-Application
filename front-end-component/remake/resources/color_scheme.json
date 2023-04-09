@@ -1,0 +1,18 @@
+{
+  "themes": {
+    "dark": {
+      "form_bg": "#0D0C1A",
+      "form_text": "#CD1748",
+      "form_panel_bg": "#1C172B",
+      "form_menu_bg": "#41314C",
+      "form_ribbon": "#7A5778"
+    },
+    "light": {
+      "form_bg": "#7DAA92",
+      "form_text": "#3D2B3D",
+      "form_panel_bg": "#466365",
+      "form_menu_bg": "#AE847E",
+      "form_ribbon": "#F7F7FF"
+    }
+  }
+}

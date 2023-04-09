@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,14 +25,33 @@ namespace MathApp.secondary_objects
             SelectedTheme = selectedTheme;
 
             string filePath = Path.Combine(TryGetSolutionDirectoryInfo()?.Parent?.FullName, "front-end-component/remake/resources");
+            string colorSchemePath = Path.Combine(filePath, "color_scheme.json");
+            JObject colorSchemeJson = JObject.Parse(File.ReadAllText(colorSchemePath));
+
+            JObject darkThemeData = colorSchemeJson["themes"]["dark"].ToObject<JObject>();
+            DarkTheme = new ColorScheme(
+                (string)darkThemeData["form_bg"],
+                (string)darkThemeData["form_text"],
+                (string)darkThemeData["form_panel_bg"],
+                (string)darkThemeData["form_menu_bg"],
+                (string)darkThemeData["form_ribbon"]
+            );
+
+            JObject lightThemeData = colorSchemeJson["themes"]["light"].ToObject<JObject>();
+            LightTheme = new ColorScheme(
+                (string)lightThemeData["form_bg"],
+                (string)lightThemeData["form_text"],
+                (string)lightThemeData["form_panel_bg"],
+                (string)lightThemeData["form_menu_bg"],
+                (string)lightThemeData["form_ribbon"]
+            );
 
             DarkLock = Image.FromFile(Path.Combine(filePath, "lock_icon_dark.png"));
             LightLock = Image.FromFile(Path.Combine(filePath, "lock_icon_light.png"));
             DarkUser = Image.FromFile(Path.Combine(filePath, "user_icon_dark.png"));
             LightUser = Image.FromFile(Path.Combine(filePath, "user_icon_light.png"));
 
-            DarkTheme = new ColorScheme("#0D0C1A", "#CD1748", "#1C172B", "#41314C", "#7A5778");
-            LightTheme = new ColorScheme("#7DAA92", "#3D2B3D", "#466365", "#AE847E", "#F7F7FF");
+
         }
 
         private static DirectoryInfo TryGetSolutionDirectoryInfo(string currentPath = null)
@@ -44,4 +65,18 @@ namespace MathApp.secondary_objects
         }
     }
 
+    public class ColorSchemeData
+    {
+        public ColorData DarkTheme { get; set; }
+        public ColorData LightTheme { get; set; }
+    }
+
+    public class ColorData
+    {
+        public string form_bg { get; set; }
+        public string form_text { get; set; }
+        public string form_panel_bg { get; set; }
+        public string form_menu_bg { get; set; }
+        public string form_ribbon { get; set; }
+    }
 }

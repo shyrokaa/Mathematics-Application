@@ -3,19 +3,36 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using MathApp.secondary_objects;
 using MathApp.ui_object;
+using NCalc;
 using OxyPlot;
 using OxyPlot.Series;
 using OxyPlot.WindowsForms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 
 namespace remake
 {
+
+
+    // helper for the equation mode handling
+    public enum EquationMode
+    {
+        Plot,
+        Equation,
+        Calculator,
+        Integral
+    }
+
     /// <summary>
     /// Class <c>MainWindow</c> models a the main user interface of the program and it's elements
     /// </summary>
@@ -24,12 +41,13 @@ namespace remake
 
         // this handles the modes in which the application is running
         private int _selectedMode;
-        
-        
+
+
         private JsonParser _configMaker;
         private Setup _currentSetup;
-        private int _equationMode;
-        
+        private EquationMode _equationMode;
+
+
         // chart used in the data display - added here due to the toolbox not being able to see the refference to it
         private PlotModel _plotModel;
         private PlotView _plotView;
@@ -158,19 +176,19 @@ namespace remake
 
             switch (this._equationMode)
             {
-                case 1:
+                case EquationMode.Plot:
                     this.button1.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_ribbon);
                     break;
 
-                case 2:
+                case EquationMode.Equation:
                     this.button2.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_ribbon);
                     break;
 
-                case 3:
+                case EquationMode.Calculator:
                     this.button3.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_ribbon);
                     break;
 
-                case 4:
+                case EquationMode.Integral:
                     this.button4.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_ribbon);
                     break;
 
@@ -222,26 +240,77 @@ namespace remake
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this._equationMode = 1;
+            this._equationMode = EquationMode.Plot;
             updateSetup();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this._equationMode = 2;
+            this._equationMode = EquationMode.Equation;
             updateSetup();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            this._equationMode = 3;
+            this._equationMode = EquationMode.Calculator;
             updateSetup();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            this._equationMode = 4;
+            this._equationMode = EquationMode.Integral;
             updateSetup();
         }
+
+
+
+
+        //this is the function that sends requests based on the equation mode
+        private void button12_Click(object sender, EventArgs e)
+        {
+            switch (this._equationMode)
+            {
+                case EquationMode.Plot:
+                    // Get the function string from textbox1
+                    string functionString = this.textBox1.Text;
+
+                    // Create a FunctionSeries from the function string using the PlotRequestParser method from RequestHandler class
+                    RequestHandler requestHandler = new RequestHandler();
+                    FunctionSeries functionSeries = requestHandler.PlotRequestParser($"f(x)={functionString}");
+
+                    // Check if functionSeries is null, meaning an error occurred during parsing
+                    if (functionSeries == null)
+                    {
+                        return;
+                    }
+
+                    // Add the function series to the plot
+                    this._plotView.Model.Series.Add(functionSeries);
+
+                    // Refresh the plot
+                    this._plotView.InvalidatePlot(true);
+                    break;
+
+                // Code for other cases
+                case EquationMode.Equation:
+                    // ...
+                    break;
+                case EquationMode.Calculator:
+                    // ...
+                    break;
+                case EquationMode.Integral:
+                    // ...
+                    break;
+                default:
+                    // ...
+                    break;
+            }
+        }
+
+
+
     }
+
+
 }
+

@@ -44,6 +44,10 @@
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "dependencies": {
+            "MathNet.Symbolics": {
+              "target": "Package",
+              "version": "[0.24.0, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.2, )"
@@ -51,6 +55,10 @@
             "OxyPlot.WindowsForms": {
               "target": "Package",
               "version": "[2.1.2, )"
+            },
+            "System.Linq.Dynamic.Core": {
+              "target": "Package",
+              "version": "[1.3.2, )"
             },
             "ncalc": {
               "target": "Package",
