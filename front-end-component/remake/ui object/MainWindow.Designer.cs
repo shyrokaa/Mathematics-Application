@@ -29,16 +29,17 @@
         private void InitializeComponent()
         {
             panel3 = new Panel();
-            signIn_btn = new Button();
-            signUp_btn = new Button();
-            signOut_btn = new Button();
             label2 = new Label();
             label1 = new Label();
             pictureBox1 = new PictureBox();
+            signIn_btn = new Button();
+            signUp_btn = new Button();
+            signOut_btn = new Button();
             panel2 = new Panel();
             label4 = new Label();
             label8 = new Label();
             label7 = new Label();
+            button10 = new Button();
             textBox4 = new TextBox();
             textBox3 = new TextBox();
             textBox2 = new TextBox();
@@ -59,7 +60,6 @@
             chart_panel = new Panel();
             label5 = new Label();
             button11 = new Button();
-            button10 = new Button();
             button6 = new Button();
             button5 = new Button();
             panel5 = new Panel();
@@ -82,6 +82,33 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(97, 138);
             panel3.TabIndex = 6;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(14, 98);
+            label2.Name = "label2";
+            label2.Size = new Size(53, 15);
+            label2.TabIndex = 2;
+            label2.Text = "join date";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(14, 83);
+            label1.Name = "label1";
+            label1.Size = new Size(30, 15);
+            label1.TabIndex = 1;
+            label1.Text = "User";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = SystemColors.ControlDarkDark;
+            pictureBox1.Location = new Point(14, 9);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(70, 70);
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
             // 
             // signIn_btn
             // 
@@ -117,33 +144,6 @@
             signOut_btn.TabIndex = 3;
             signOut_btn.Text = "signOut";
             signOut_btn.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(14, 98);
-            label2.Name = "label2";
-            label2.Size = new Size(38, 15);
-            label2.TabIndex = 2;
-            label2.Text = "label2";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(14, 83);
-            label1.Name = "label1";
-            label1.Size = new Size(60, 15);
-            label1.TabIndex = 1;
-            label1.Text = "Username";
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackColor = SystemColors.ControlDarkDark;
-            pictureBox1.Location = new Point(14, 9);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(70, 70);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
             // 
             // panel2
             // 
@@ -190,6 +190,17 @@
             label7.Size = new Size(89, 15);
             label7.TabIndex = 15;
             label7.Text = "Interval bottom";
+            // 
+            // button10
+            // 
+            button10.FlatAppearance.BorderSize = 0;
+            button10.FlatStyle = FlatStyle.Flat;
+            button10.Location = new Point(261, 8);
+            button10.Name = "button10";
+            button10.Size = new Size(63, 23);
+            button10.TabIndex = 4;
+            button10.Text = "History";
+            button10.UseVisualStyleBackColor = true;
             // 
             // textBox4
             // 
@@ -376,7 +387,7 @@
             // 
             chart_panel.Location = new Point(20, 26);
             chart_panel.Name = "chart_panel";
-            chart_panel.Size = new Size(405, 247);
+            chart_panel.Size = new Size(413, 247);
             chart_panel.TabIndex = 7;
             // 
             // label5
@@ -398,17 +409,6 @@
             button11.TabIndex = 5;
             button11.Text = "Save";
             button11.UseVisualStyleBackColor = true;
-            // 
-            // button10
-            // 
-            button10.FlatAppearance.BorderSize = 0;
-            button10.FlatStyle = FlatStyle.Flat;
-            button10.Location = new Point(261, 8);
-            button10.Name = "button10";
-            button10.Size = new Size(63, 23);
-            button10.TabIndex = 4;
-            button10.Text = "History";
-            button10.UseVisualStyleBackColor = true;
             // 
             // button6
             // 
