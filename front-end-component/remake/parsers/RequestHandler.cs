@@ -1,4 +1,5 @@
 ﻿using Antlr.Runtime;
+using MathApp.algorithms;
 using NCalc;
 using OxyPlot;
 using OxyPlot.Series;
@@ -108,6 +109,15 @@ namespace MathApp.parsers
 
 
         // Genetic algorithm
+        public string EquationRequestParser(string request)
+        {
+            GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm();
+            // use the SolveEquation method to find the solution
+            Complex solution = geneticAlgorithm.SolveEquation(request);
+
+            // return the solution as a string
+            return $"The solution to the equation {request} is {solution}";
+        }
 
 
 

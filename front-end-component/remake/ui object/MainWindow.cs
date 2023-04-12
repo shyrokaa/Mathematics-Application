@@ -274,7 +274,7 @@ namespace remake
 
                 // Code for other cases
                 case EquationMode.Equation:
-                    // ...
+                    handleEquation(sender, e);
                     break;
                 case EquationMode.Calculator:
                     handleCalculator(sender, e);
@@ -330,6 +330,18 @@ namespace remake
             // Show the plot view again and refresh the plot
             this._plotView.Visible = true;
             this._plotView.InvalidatePlot(true);
+        }
+
+        private void handleEquation(object sender, EventArgs e)
+        {
+            string equation = this.textBox1.Text;
+
+            // Find the solution of the equation using the EquationRequestParser method from RequestHandler class
+            RequestHandler requestHandler = new RequestHandler();
+            string solution = requestHandler.EquationRequestParser(equation);
+
+            // Update the solution in the UI
+            this.textBox2.Text = solution;
         }
 
 
