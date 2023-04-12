@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using MathApp.parsers;
 using MathApp.secondary_objects;
 using MathApp.ui_object;
 using NCalc;
@@ -63,12 +64,9 @@ namespace remake
             this._currentSetup = _configMaker.ParseData();
             this._equationMode = 0;
 
-            // not a clean solution to the chart problem 
             this._plotModel = new PlotModel();
             this._plotView = new PlotView();
 
-            var functionSeries = new FunctionSeries(Math.Sin, 0, 10, 0.1, "sin(x)");
-            this._plotModel.Series.Add(functionSeries);
             this._plotView.Model = this._plotModel;
 
             this._plotView.Dock = DockStyle.Fill;
@@ -264,7 +262,6 @@ namespace remake
 
 
 
-
         //this is the function that sends requests based on the equation mode
         private void button12_Click(object sender, EventArgs e)
         {
@@ -272,23 +269,7 @@ namespace remake
             {
                 case EquationMode.Plot:
                     // Get the function string from textbox1
-                    string functionString = this.textBox1.Text;
-
-                    // Create a FunctionSeries from the function string using the PlotRequestParser method from RequestHandler class
-                    RequestHandler requestHandler = new RequestHandler();
-                    FunctionSeries functionSeries = requestHandler.PlotRequestParser($"f(x)={functionString}");
-
-                    // Check if functionSeries is null, meaning an error occurred during parsing
-                    if (functionSeries == null)
-                    {
-                        return;
-                    }
-
-                    // Add the function series to the plot
-                    this._plotView.Model.Series.Add(functionSeries);
-
-                    // Refresh the plot
-                    this._plotView.InvalidatePlot(true);
+                    handlePlot(sender, e);
                     break;
 
                 // Code for other cases
@@ -296,7 +277,7 @@ namespace remake
                     // ...
                     break;
                 case EquationMode.Calculator:
-                    // ...
+                    handleCalculator(sender, e);
                     break;
                 case EquationMode.Integral:
                     // ...
@@ -306,6 +287,124 @@ namespace remake
                     break;
             }
         }
+
+
+        private void handlePlot(object sender, EventArgs e)
+        {
+            string functionString = this.textBox1.Text;
+
+            // Read the min and max values from the textboxes
+            double min, max;
+            if (!double.TryParse(this.textBox4.Text, out min) || !double.TryParse(this.textBox3.Text, out max))
+            {
+                MessageBox.Show("Invalid input. Please enter valid numbers for min and max.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Validate that the min and max values form a valid interval
+            if (min >= max)
+            {
+                MessageBox.Show("Invalid interval. Max value must be greater than min value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Create a FunctionSeries from the function string using the PlotRequestParser method from RequestHandler class
+            RequestHandler requestHandler = new RequestHandler();
+            FunctionSeries functionSeries = requestHandler.PlotRequestParser($"f(x)={functionString}", min, max);
+
+            // Check if functionSeries is null, meaning an error occurred during parsing
+            if (functionSeries == null)
+            {
+                return;
+            }
+
+            // Hide the plot view while clearing the series
+            this._plotView.Visible = false;
+
+            // Clear the plot series
+            this._plotView.Model.Series.Clear();
+
+            // Add the function series to the plot
+            this._plotView.Model.Series.Add(functionSeries);
+
+            // Show the plot view again and refresh the plot
+            this._plotView.Visible = true;
+            this._plotView.InvalidatePlot(true);
+        }
+
+
+        private void handleCalculator(object sender, EventArgs e)
+        {
+            string mathExpression = this.textBox1.Text;
+
+            // Evaluate the math expression using the CalculatorRequestParser method from RequestHandler class
+            RequestHandler requestHandler = new RequestHandler();
+            double? result = requestHandler.CalculatorRequestParser(mathExpression);
+
+            // Check if result is null, meaning an error occurred during parsing or evaluation
+            if (result == null)
+            {
+                this.textBox2.Text = "";
+                return;
+            }
+
+            // Update the result in the UI
+            this.textBox2.Text = result.ToString();
+        }
+
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            // Clear the plot series
+            this._plotView.Model.Series.Clear();
+
+            // Refresh the plot
+            this._plotView.InvalidatePlot(true);
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            // Create a SaveFileDialog to prompt the user for a save location
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "PNG Image|*.png|JPEG Image|*.jpg|Bitmap Image|*.bmp";
+            saveFileDialog.Title = "Save plot as image";
+
+            // Show the SaveFileDialog and check if the user clicked OK
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Get the file format based on the extension
+                System.Drawing.Imaging.ImageFormat format = System.Drawing.Imaging.ImageFormat.Png;
+                switch (Path.GetExtension(saveFileDialog.FileName).ToLower())
+                {
+                    case ".png":
+                        format = System.Drawing.Imaging.ImageFormat.Png;
+                        break;
+                    case ".jpg":
+                        format = System.Drawing.Imaging.ImageFormat.Jpeg;
+                        break;
+                    case ".bmp":
+                        format = System.Drawing.Imaging.ImageFormat.Bmp;
+                        break;
+                }
+
+                // Create a bitmap of the plot view
+                Bitmap bmp = new Bitmap(this._plotView.Width, this._plotView.Height);
+                this._plotView.DrawToBitmap(bmp, new Rectangle(0, 0, this._plotView.Width, this._plotView.Height));
+
+                // Save the bitmap to the file location chosen by the user
+                using (FileStream stream = new FileStream(saveFileDialog.FileName, FileMode.Create))
+                {
+                    bmp.Save(stream, format);
+                }
+
+                // Display a message box confirming that the file was saved
+                MessageBox.Show($"Plot saved as {Path.GetFileName(saveFileDialog.FileName)}", "Save successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+
+
+
 
 
 

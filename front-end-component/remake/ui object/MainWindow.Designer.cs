@@ -57,6 +57,7 @@
             about = new ToolStripMenuItem();
             settings = new ToolStripMenuItem();
             panel4 = new Panel();
+            button7 = new Button();
             chart_panel = new Panel();
             label5 = new Label();
             button11 = new Button();
@@ -369,6 +370,7 @@
             // panel4
             // 
             panel4.BackColor = Color.FromArgb(28, 23, 43);
+            panel4.Controls.Add(button7);
             panel4.Controls.Add(signOut_btn);
             panel4.Controls.Add(signIn_btn);
             panel4.Controls.Add(signUp_btn);
@@ -383,11 +385,23 @@
             panel4.Size = new Size(497, 305);
             panel4.TabIndex = 7;
             // 
+            // button7
+            // 
+            button7.FlatAppearance.BorderSize = 0;
+            button7.FlatStyle = FlatStyle.Flat;
+            button7.Location = new Point(370, 279);
+            button7.Name = "button7";
+            button7.Size = new Size(63, 23);
+            button7.TabIndex = 8;
+            button7.Text = "Clear";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
             // chart_panel
             // 
             chart_panel.Location = new Point(20, 26);
             chart_panel.Name = "chart_panel";
-            chart_panel.Size = new Size(413, 247);
+            chart_panel.Size = new Size(405, 247);
             chart_panel.TabIndex = 7;
             // 
             // label5
@@ -409,6 +423,7 @@
             button11.TabIndex = 5;
             button11.Text = "Save";
             button11.UseVisualStyleBackColor = true;
+            button11.Click += button11_Click;
             // 
             // button6
             // 
@@ -501,5 +516,6 @@
         private Label label7;
         private TextBox textBox4;
         private TextBox textBox3;
+        private Button button7;
     }
 }

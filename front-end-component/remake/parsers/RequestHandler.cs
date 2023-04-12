@@ -3,19 +3,19 @@ using NCalc;
 using OxyPlot;
 using OxyPlot.Series;
 using System.Data;
+using System.Globalization;
 using System.Linq.Dynamic.Core.Parser;
+using System.Numerics;
 
-namespace MathApp.secondary_objects
+namespace MathApp.parsers
 {
     public class RequestHandler
     {
-        public FunctionSeries PlotRequestParser(string request)
+        public FunctionSeries PlotRequestParser(string request, double min = -10, double max = 10)
         {
             // Parse the request string to extract the function parameters
             string[] parts = request.Split(new char[] { ' ', '=', '[', ']' }, StringSplitOptions.RemoveEmptyEntries);
             string functionExpression = parts[1];
-            double min = -10;
-            double max = 10;
             int resolution = 100;
 
             // Create the list of data points for the function
@@ -26,10 +26,10 @@ namespace MathApp.secondary_objects
 
                 try
                 {
-                    object result = new Expression(functionExpression.Replace("x", x.ToString())).Evaluate();
-                    if (result is double)
+                    double? result = Evaluate(functionExpression.Replace("x", x.ToString()));
+                    if (result.HasValue)
                     {
-                        double y = (double)result;
+                        double y = result.Value;
                         dataPoints.Add(new DataPoint(x, y));
                     }
                     else
@@ -50,10 +50,8 @@ namespace MathApp.secondary_objects
 
             return series;
         }
-    }
 
-    public class Parser
-    {
+
         public static double? Evaluate(string expression)
         {
             try
@@ -83,6 +81,9 @@ namespace MathApp.secondary_objects
                     }
                 };
 
+                // Define the variable "x"
+                evaluator.Parameters.Add("x", 0);
+
                 // Evaluate the expression
                 object result = evaluator.Evaluate();
 
@@ -100,9 +101,73 @@ namespace MathApp.secondary_objects
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Invalid expression format. Please use a valid mathematical expression.", "Invalid Expression", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Evaluator failed: Invalid expression format. Please use a valid mathematical expression.", "Invalid Expression", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
+
+
+        // Genetic algorithm
+
+
+
+        // Calculator
+        public double? CalculatorRequestParser(string request)
+        {
+            try
+            {
+                // Create an expression evaluator
+                Expression evaluator = new Expression(request);
+
+                // Register custom functions
+                evaluator.EvaluateFunction += delegate (string name, FunctionArgs args)
+                {
+                    switch (name.ToLower())
+                    {
+                        case "sin":
+                            args.Result = Math.Sin(Convert.ToDouble(args.Parameters[0].Evaluate()));
+                            break;
+                        case "cos":
+                            args.Result = Math.Cos(Convert.ToDouble(args.Parameters[0].Evaluate()));
+                            break;
+                        case "tan":
+                            args.Result = Math.Tan(Convert.ToDouble(args.Parameters[0].Evaluate()));
+                            break;
+                        case "log":
+                            args.Result = Math.Log(Convert.ToDouble(args.Parameters[0].Evaluate()));
+                            break;
+                        default:
+                            MessageBox.Show($"Function '{name}' not supported", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            break;
+                    }
+                };
+
+                // Define the variable "x"
+                evaluator.Parameters.Add("x", 0);
+
+                // Evaluate the expression
+                object result = evaluator.Evaluate();
+
+                // Convert the result to a double
+                double value;
+                if (double.TryParse(result.ToString(), out value))
+                {
+                    return value;
+                }
+                else
+                {
+                    MessageBox.Show("Invalid expression format. Please use a valid mathematical expression.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Invalid expression format. Please use a valid mathematical expression.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
+
+
     }
 }
