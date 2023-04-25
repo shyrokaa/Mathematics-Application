@@ -1,28 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "E:\\university\\4\\licenta\\repo\\Mathematics-Application\\front-end-component\\remake\\MathApp.csproj": {}
+    "D:\\4\\Lic\\Mathematics-Application\\front-end-component\\remake\\MathApp.csproj": {}
   },
   "projects": {
-    "E:\\university\\4\\licenta\\repo\\Mathematics-Application\\front-end-component\\remake\\MathApp.csproj": {
+    "D:\\4\\Lic\\Mathematics-Application\\front-end-component\\remake\\MathApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\university\\4\\licenta\\repo\\Mathematics-Application\\front-end-component\\remake\\MathApp.csproj",
+        "projectUniqueName": "D:\\4\\Lic\\Mathematics-Application\\front-end-component\\remake\\MathApp.csproj",
         "projectName": "MathApp",
-        "projectPath": "E:\\university\\4\\licenta\\repo\\Mathematics-Application\\front-end-component\\remake\\MathApp.csproj",
-        "packagesPath": "C:\\Users\\Shyrokaa\\.nuget\\packages\\",
-        "outputPath": "E:\\university\\4\\licenta\\repo\\Mathematics-Application\\front-end-component\\remake\\obj\\",
+        "projectPath": "D:\\4\\Lic\\Mathematics-Application\\front-end-component\\remake\\MathApp.csproj",
+        "packagesPath": "C:\\Users\\ScrapMetal\\.nuget\\packages\\",
+        "outputPath": "D:\\4\\Lic\\Mathematics-Application\\front-end-component\\remake\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Shyrokaa\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\ScrapMetal\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net7.0-windows"
+          "net7.0-windows7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -43,48 +39,17 @@
       "frameworks": {
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
-          "dependencies": {
-            "MathNet.Symbolics": {
-              "target": "Package",
-              "version": "[0.24.0, )"
-            },
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[13.0.2, )"
-            },
-            "OxyPlot.WindowsForms": {
-              "target": "Package",
-              "version": "[2.1.2, )"
-            },
-            "System.Linq.Dynamic.Core": {
-              "target": "Package",
-              "version": "[1.3.2, )"
-            },
-            "ncalc": {
-              "target": "Package",
-              "version": "[1.3.8, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            },
-            "Microsoft.WindowsDesktop.App.WindowsForms": {
-              "privateAssets": "none"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
