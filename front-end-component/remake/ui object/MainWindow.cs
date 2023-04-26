@@ -53,9 +53,9 @@ namespace remake
 
         private EquationMode _equationMode;
 
-        //variables used in the 
+        // variables used for the application states
         private Boolean _offlineMode;
-        private Boolean _signedIn;
+        private Boolean _signedIn = false;
 
 
         // chart used in the data display - added here due to the toolbox not being able to see the refference to it
@@ -84,6 +84,7 @@ namespace remake
 
 
             updateSetup();
+            updateApplicationState();
         }
 
 
@@ -183,6 +184,12 @@ namespace remake
             this.textBox3.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
             this.textBox4.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
 
+
+            this.textBox1.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
+            this.textBox2.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
+            this.textBox3.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
+            this.textBox4.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
+
             //menu colors
             this.menuStrip1.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
 
@@ -228,6 +235,46 @@ namespace remake
             }
 
         }
+
+
+        /// <summary>
+        /// Function that updates the interface components based on the user login state and the equation mode that is selected
+        /// </summary>
+        private void updateApplicationState()
+        {
+            if (_offlineMode)
+            {
+                // hide user login controls and replace them with something else
+
+            }
+            else
+            {
+                if (_signedIn)
+                {
+                    // hide sign in and sign up buttons
+                    this.signIn_btn.Visible = false;
+                    this.signUp_btn.Visible = false;
+                    this.signOut_btn.Visible = true;
+                }
+                else
+                {
+                    // hide the sign out button
+                    this.signIn_btn.Visible = true;
+                    this.signUp_btn.Visible = true;
+
+                    this.signOut_btn.Visible = false;
+                }
+
+
+
+
+            }
+
+
+
+
+        }
+
 
 
         /// <summary>

@@ -213,6 +213,7 @@
             textBox2.Location = new Point(3, 26);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
+            textBox2.ReadOnly = true;
             textBox2.Size = new Size(200, 46);
             textBox2.TabIndex = 12;
             // 
@@ -237,7 +238,7 @@
             // 
             signUp_btn.FlatAppearance.BorderSize = 0;
             signUp_btn.FlatStyle = FlatStyle.Flat;
-            signUp_btn.Location = new Point(3, 217);
+            signUp_btn.Location = new Point(3, 246);
             signUp_btn.Name = "signUp_btn";
             signUp_btn.Size = new Size(164, 23);
             signUp_btn.TabIndex = 8;
@@ -269,7 +270,7 @@
             // 
             signIn_btn.FlatAppearance.BorderSize = 0;
             signIn_btn.FlatStyle = FlatStyle.Flat;
-            signIn_btn.Location = new Point(3, 188);
+            signIn_btn.Location = new Point(3, 217);
             signIn_btn.Name = "signIn_btn";
             signIn_btn.Size = new Size(164, 23);
             signIn_btn.TabIndex = 9;
