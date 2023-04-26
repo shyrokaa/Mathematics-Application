@@ -39,9 +39,9 @@ namespace remake
         {
             // This method should make calls to the server if networking is disabled, otherwise it should just not be accesible
             MessageBox.Show("fake user log in successful");
-            
+
             //populating an user object with the information that was gathered from the api
-             
+
 
             this.Close();
         }
@@ -69,7 +69,7 @@ namespace remake
             //buttons
             this.button1.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
             this.button2.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
-        
+
             //textbox
             this.textBox1.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
             this.textBox2.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
@@ -112,7 +112,7 @@ namespace remake
             this.Close();
             SignUpWindow temporarySignUpWindow = new SignUpWindow(_currentSetup);
             temporarySignUpWindow.ShowDialog();
-            
+
         }
     }
 }

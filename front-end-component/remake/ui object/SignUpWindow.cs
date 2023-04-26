@@ -40,7 +40,7 @@ namespace MathApp.ui_object
             //text
             this.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
             this.panel1.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
-           
+
             //menu
             this.panel1.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_panel_bg);
             this.button2.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
@@ -65,9 +65,15 @@ namespace MathApp.ui_object
             {
                 case "Dark":
                     applyTheme(this._currentSetup.DarkTheme);
+                    this.pictureBox1.Image = _currentSetup.DarkUser;
+                    this.pictureBox2.Image = _currentSetup.DarkLock;
+                    this.pictureBox3.Image = _currentSetup.DarkLock;
                     break;
                 case "Light":
                     applyTheme(this._currentSetup.LightTheme);
+                    this.pictureBox1.Image = _currentSetup.LightUser;
+                    this.pictureBox2.Image = _currentSetup.LightLock;
+                    this.pictureBox3.Image = _currentSetup.LightLock;
                     break;
             }
 
@@ -108,7 +114,7 @@ namespace MathApp.ui_object
             }
             // passwords do not match
 
-            if(this.textBox2.Text != this.textBox3.Text)
+            if (this.textBox2.Text != this.textBox3.Text)
             {
                 MessageBox.Show("Error: passwords do not match");
                 return false;

@@ -13,7 +13,7 @@ namespace remake
             InitializeComponent();
             _configMaker = new JsonParser();
             _currentSetup = currentSetup;
-            updateSetup();        
+            updateSetup();
         }
 
 
@@ -25,7 +25,7 @@ namespace remake
         private void applyTheme(ColorScheme c)
         {
             //placing the color scheme itself onto the window
-            
+
             //background
             this.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
             //text
@@ -35,10 +35,14 @@ namespace remake
             //menu
             this.panel1.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_panel_bg);
             this.panel2.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_panel_bg);
-        
+
+
+            this.panel3.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_ribbon);
+
+
             this.button1.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
             this.button2.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
-        
+
         }
 
 
@@ -72,8 +76,8 @@ namespace remake
         /// </summary>
         private void button2_Click(object sender, EventArgs e)
         {
-            if(radioButton1.Checked)
-                _configMaker.UpdateJson(this.checkBox1.Checked,radioButton1.Text);
+            if (radioButton1.Checked)
+                _configMaker.UpdateJson(this.checkBox1.Checked, radioButton1.Text);
             else
                 _configMaker.UpdateJson(this.checkBox1.Checked, radioButton2.Text);
 
@@ -86,6 +90,11 @@ namespace remake
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void OptionsWindow_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -19,6 +19,9 @@ namespace MathApp.secondary_objects
         public Image DarkUser { get; }
         public Image LightUser { get; }
 
+        public Image DarkLogo { get; }
+        public Image LightLogo { get; }
+
         public Setup(bool networkDisabled, string selectedTheme)
         {
             NetworkDisabled = networkDisabled;
@@ -51,6 +54,9 @@ namespace MathApp.secondary_objects
             DarkUser = Image.FromFile(Path.Combine(filePath, "user_icon_dark.png"));
             LightUser = Image.FromFile(Path.Combine(filePath, "user_icon_light.png"));
 
+
+            DarkLogo = Image.FromFile(Path.Combine(filePath, "dark_logo.png"));
+            LightLogo = Image.FromFile(Path.Combine(filePath, "light_logo.png"));
 
         }
 

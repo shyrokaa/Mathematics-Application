@@ -28,66 +28,62 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel3 = new Panel();
             label2 = new Label();
             label1 = new Label();
             pictureBox1 = new PictureBox();
-            signIn_btn = new Button();
-            signUp_btn = new Button();
-            signOut_btn = new Button();
             panel2 = new Panel();
-            label4 = new Label();
             label8 = new Label();
-            label7 = new Label();
             button10 = new Button();
             textBox4 = new TextBox();
             textBox3 = new TextBox();
-            textBox2 = new TextBox();
             label6 = new Label();
             button12 = new Button();
             textBox1 = new TextBox();
+            label4 = new Label();
+            textBox2 = new TextBox();
             panel1 = new Panel();
-            label3 = new Label();
-            button4 = new Button();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
+            signUp_btn = new Button();
+            signOut_btn = new Button();
+            label9 = new Label();
+            signIn_btn = new Button();
             menuStrip1 = new MenuStrip();
             help = new ToolStripMenuItem();
             about = new ToolStripMenuItem();
             settings = new ToolStripMenuItem();
+            button4 = new Button();
+            button3 = new Button();
+            button2 = new Button();
+            button1 = new Button();
             panel4 = new Panel();
-            button7 = new Button();
             chart_panel = new Panel();
             label5 = new Label();
+            button7 = new Button();
             button11 = new Button();
-            button6 = new Button();
-            button5 = new Button();
             panel5 = new Panel();
-            panel3.SuspendLayout();
+            panel8 = new Panel();
+            panel6 = new Panel();
+            panel7 = new Panel();
+            pictureBox2 = new PictureBox();
+            panel9 = new Panel();
+            panel3 = new Panel();
+            panel10 = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
             panel4.SuspendLayout();
+            panel5.SuspendLayout();
+            panel6.SuspendLayout();
+            panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            panel9.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
-            // 
-            // panel3
-            // 
-            panel3.BackColor = Color.FromArgb(28, 23, 43);
-            panel3.Controls.Add(label2);
-            panel3.Controls.Add(label1);
-            panel3.Controls.Add(pictureBox1);
-            panel3.ForeColor = Color.FromArgb(205, 23, 72);
-            panel3.Location = new Point(607, 12);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(97, 138);
-            panel3.TabIndex = 6;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(14, 98);
+            label2.Location = new Point(89, 28);
             label2.Name = "label2";
             label2.Size = new Size(53, 15);
             label2.TabIndex = 2;
@@ -96,7 +92,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(14, 83);
+            label1.Location = new Point(89, 13);
             label1.Name = "label1";
             label1.Size = new Size(30, 15);
             label1.TabIndex = 1;
@@ -105,108 +101,55 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = SystemColors.ControlDarkDark;
-            pictureBox1.Location = new Point(14, 9);
+            pictureBox1.Location = new Point(10, 10);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(70, 70);
+            pictureBox1.Size = new Size(60, 60);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
-            // 
-            // signIn_btn
-            // 
-            signIn_btn.FlatAppearance.BorderSize = 0;
-            signIn_btn.FlatStyle = FlatStyle.Flat;
-            signIn_btn.Location = new Point(431, 37);
-            signIn_btn.Name = "signIn_btn";
-            signIn_btn.Size = new Size(63, 23);
-            signIn_btn.TabIndex = 6;
-            signIn_btn.Text = "signIn";
-            signIn_btn.UseVisualStyleBackColor = true;
-            signIn_btn.Click += button8_Click_1;
-            // 
-            // signUp_btn
-            // 
-            signUp_btn.FlatAppearance.BorderSize = 0;
-            signUp_btn.FlatStyle = FlatStyle.Flat;
-            signUp_btn.Location = new Point(431, 8);
-            signUp_btn.Name = "signUp_btn";
-            signUp_btn.Size = new Size(63, 23);
-            signUp_btn.TabIndex = 5;
-            signUp_btn.Text = "signUp";
-            signUp_btn.UseVisualStyleBackColor = true;
-            signUp_btn.Click += button9_Click;
-            // 
-            // signOut_btn
-            // 
-            signOut_btn.FlatAppearance.BorderSize = 0;
-            signOut_btn.FlatStyle = FlatStyle.Flat;
-            signOut_btn.Location = new Point(431, 66);
-            signOut_btn.Name = "signOut_btn";
-            signOut_btn.Size = new Size(63, 23);
-            signOut_btn.TabIndex = 3;
-            signOut_btn.Text = "signOut";
-            signOut_btn.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(28, 23, 43);
-            panel2.Controls.Add(label4);
             panel2.Controls.Add(label8);
-            panel2.Controls.Add(label7);
             panel2.Controls.Add(button10);
             panel2.Controls.Add(textBox4);
             panel2.Controls.Add(textBox3);
-            panel2.Controls.Add(textBox2);
             panel2.Controls.Add(label6);
             panel2.Controls.Add(button12);
             panel2.Controls.Add(textBox1);
             panel2.ForeColor = Color.FromArgb(205, 23, 72);
-            panel2.Location = new Point(207, 12);
+            panel2.Location = new Point(191, 12);
             panel2.Name = "panel2";
-            panel2.Size = new Size(394, 138);
+            panel2.Size = new Size(412, 133);
             panel2.TabIndex = 5;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(18, 83);
-            label4.Name = "label4";
-            label4.Size = new Size(54, 15);
-            label4.TabIndex = 10;
-            label4.Text = "Solution:";
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(278, 37);
+            label8.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.Location = new Point(3, 32);
             label8.Name = "label8";
-            label8.Size = new Size(67, 15);
+            label8.Size = new Size(44, 15);
             label8.TabIndex = 16;
-            label8.Text = "Interval top";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(256, 58);
-            label7.Name = "label7";
-            label7.Size = new Size(89, 15);
-            label7.TabIndex = 15;
-            label7.Text = "Interval bottom";
+            label8.Text = "Interval";
             // 
             // button10
             // 
             button10.FlatAppearance.BorderSize = 0;
             button10.FlatStyle = FlatStyle.Flat;
-            button10.Location = new Point(261, 8);
+            button10.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            button10.Location = new Point(326, 5);
             button10.Name = "button10";
-            button10.Size = new Size(63, 23);
+            button10.Size = new Size(83, 23);
             button10.TabIndex = 4;
             button10.Text = "History";
             button10.UseVisualStyleBackColor = true;
+            button10.Click += button10_Click;
             // 
             // textBox4
             // 
             textBox4.BorderStyle = BorderStyle.None;
-            textBox4.Location = new Point(351, 37);
+            textBox4.Location = new Point(61, 32);
             textBox4.Multiline = true;
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(28, 15);
@@ -215,37 +158,30 @@
             // textBox3
             // 
             textBox3.BorderStyle = BorderStyle.None;
-            textBox3.Location = new Point(351, 58);
+            textBox3.Location = new Point(99, 32);
             textBox3.Multiline = true;
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(28, 15);
             textBox3.TabIndex = 13;
             // 
-            // textBox2
-            // 
-            textBox2.BorderStyle = BorderStyle.None;
-            textBox2.Location = new Point(79, 83);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(300, 48);
-            textBox2.TabIndex = 12;
-            // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(20, 13);
+            label6.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Location = new Point(3, 9);
             label6.Name = "label6";
-            label6.Size = new Size(52, 15);
+            label6.Size = new Size(48, 15);
             label6.TabIndex = 11;
-            label6.Text = "Request:";
+            label6.Text = "Request";
             // 
             // button12
             // 
             button12.FlatAppearance.BorderSize = 0;
             button12.FlatStyle = FlatStyle.Flat;
-            button12.Location = new Point(321, 8);
+            button12.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            button12.Location = new Point(326, 104);
             button12.Name = "button12";
-            button12.Size = new Size(70, 23);
+            button12.Size = new Size(83, 23);
             button12.TabIndex = 7;
             button12.Text = "Compute ";
             button12.UseVisualStyleBackColor = true;
@@ -254,95 +190,101 @@
             // textBox1
             // 
             textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Location = new Point(79, 13);
+            textBox1.Location = new Point(61, 9);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(176, 15);
+            textBox1.Size = new Size(248, 15);
             textBox1.TabIndex = 9;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(81, 8);
+            label4.Name = "label4";
+            label4.Size = new Size(47, 15);
+            label4.TabIndex = 10;
+            label4.Text = "Solution";
+            // 
+            // textBox2
+            // 
+            textBox2.BackColor = SystemColors.InactiveBorder;
+            textBox2.BorderStyle = BorderStyle.None;
+            textBox2.Location = new Point(3, 26);
+            textBox2.Multiline = true;
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(200, 46);
+            textBox2.TabIndex = 12;
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(28, 23, 43);
-            panel1.Controls.Add(label3);
-            panel1.Controls.Add(button4);
-            panel1.Controls.Add(button3);
-            panel1.Controls.Add(button2);
-            panel1.Controls.Add(button1);
+            panel1.Controls.Add(pictureBox1);
+            panel1.Controls.Add(signUp_btn);
+            panel1.Controls.Add(signOut_btn);
+            panel1.Controls.Add(label9);
+            panel1.Controls.Add(signIn_btn);
             panel1.Controls.Add(menuStrip1);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label1);
             panel1.ForeColor = Color.FromArgb(205, 23, 72);
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(173, 449);
+            panel1.Size = new Size(170, 306);
             panel1.TabIndex = 4;
             // 
-            // label3
+            // signUp_btn
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.ImageAlign = ContentAlignment.TopCenter;
-            label3.Location = new Point(25, 13);
-            label3.Name = "label3";
-            label3.Size = new Size(122, 31);
-            label3.TabIndex = 8;
-            label3.Text = "MathApp";
-            label3.TextAlign = ContentAlignment.TopCenter;
+            signUp_btn.FlatAppearance.BorderSize = 0;
+            signUp_btn.FlatStyle = FlatStyle.Flat;
+            signUp_btn.Location = new Point(3, 217);
+            signUp_btn.Name = "signUp_btn";
+            signUp_btn.Size = new Size(164, 23);
+            signUp_btn.TabIndex = 8;
+            signUp_btn.Text = "- SignUp -";
+            signUp_btn.UseVisualStyleBackColor = true;
+            signUp_btn.Click += signUp_btn_Click;
             // 
-            // button4
+            // signOut_btn
             // 
-            button4.FlatAppearance.BorderSize = 0;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Location = new Point(3, 202);
-            button4.Name = "button4";
-            button4.Size = new Size(167, 23);
-            button4.TabIndex = 6;
-            button4.Text = "Integral";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
+            signOut_btn.FlatAppearance.BorderSize = 0;
+            signOut_btn.FlatStyle = FlatStyle.Flat;
+            signOut_btn.Location = new Point(3, 246);
+            signOut_btn.Name = "signOut_btn";
+            signOut_btn.Size = new Size(164, 23);
+            signOut_btn.TabIndex = 7;
+            signOut_btn.Text = "- SignOut -";
+            signOut_btn.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // label9
             // 
-            button3.FlatAppearance.BorderSize = 0;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Location = new Point(3, 173);
-            button3.Name = "button3";
-            button3.Size = new Size(167, 23);
-            button3.TabIndex = 5;
-            button3.Text = "Calculator";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            label9.AutoSize = true;
+            label9.Location = new Point(89, 43);
+            label9.Name = "label9";
+            label9.Size = new Size(49, 15);
+            label9.TabIndex = 10;
+            label9.Text = "nr saves";
             // 
-            // button2
+            // signIn_btn
             // 
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Location = new Point(3, 144);
-            button2.Name = "button2";
-            button2.Size = new Size(167, 23);
-            button2.TabIndex = 4;
-            button2.Text = "Equation";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
-            // button1
-            // 
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(3, 115);
-            button1.Name = "button1";
-            button1.Size = new Size(167, 23);
-            button1.TabIndex = 3;
-            button1.Text = "Plot Function";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            signIn_btn.FlatAppearance.BorderSize = 0;
+            signIn_btn.FlatStyle = FlatStyle.Flat;
+            signIn_btn.Location = new Point(3, 188);
+            signIn_btn.Name = "signIn_btn";
+            signIn_btn.Size = new Size(164, 23);
+            signIn_btn.TabIndex = 9;
+            signIn_btn.Text = "- SignIn -";
+            signIn_btn.UseVisualStyleBackColor = true;
+            signIn_btn.Click += signIn_btn_Click;
             // 
             // menuStrip1
             // 
             menuStrip1.BackColor = Color.FromArgb(65, 49, 76);
             menuStrip1.Dock = DockStyle.Bottom;
             menuStrip1.Items.AddRange(new ToolStripItem[] { help, about, settings });
-            menuStrip1.Location = new Point(0, 425);
+            menuStrip1.Location = new Point(0, 282);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(173, 24);
+            menuStrip1.Size = new Size(170, 24);
             menuStrip1.TabIndex = 7;
             menuStrip1.Text = "menuStrip1";
             menuStrip1.ItemClicked += menuStrip1_ItemClicked;
@@ -367,107 +309,209 @@
             settings.Text = "Settings";
             settings.Click += settings_Click;
             // 
+            // button4
+            // 
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            button4.Location = new Point(3, 118);
+            button4.Name = "button4";
+            button4.Size = new Size(84, 23);
+            button4.TabIndex = 6;
+            button4.Text = "- Integral -";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
+            // button3
+            // 
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            button3.Location = new Point(3, 60);
+            button3.Name = "button3";
+            button3.Size = new Size(85, 23);
+            button3.TabIndex = 5;
+            button3.Text = "- Calculator -";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // button2
+            // 
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            button2.Location = new Point(2, 89);
+            button2.Name = "button2";
+            button2.Size = new Size(85, 23);
+            button2.TabIndex = 4;
+            button2.Text = "- Equation - ";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // button1
+            // 
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Location = new Point(3, 31);
+            button1.Name = "button1";
+            button1.Size = new Size(84, 23);
+            button1.TabIndex = 3;
+            button1.Text = "- Plot -";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // panel4
             // 
             panel4.BackColor = Color.FromArgb(28, 23, 43);
-            panel4.Controls.Add(button7);
-            panel4.Controls.Add(signOut_btn);
-            panel4.Controls.Add(signIn_btn);
-            panel4.Controls.Add(signUp_btn);
             panel4.Controls.Add(chart_panel);
             panel4.Controls.Add(label5);
-            panel4.Controls.Add(button11);
-            panel4.Controls.Add(button6);
-            panel4.Controls.Add(button5);
             panel4.ForeColor = Color.FromArgb(205, 23, 72);
-            panel4.Location = new Point(207, 156);
+            panel4.Location = new Point(287, 157);
             panel4.Name = "panel4";
-            panel4.Size = new Size(497, 305);
+            panel4.Size = new Size(529, 264);
             panel4.TabIndex = 7;
-            // 
-            // button7
-            // 
-            button7.FlatAppearance.BorderSize = 0;
-            button7.FlatStyle = FlatStyle.Flat;
-            button7.Location = new Point(370, 279);
-            button7.Name = "button7";
-            button7.Size = new Size(63, 23);
-            button7.TabIndex = 8;
-            button7.Text = "Clear";
-            button7.UseVisualStyleBackColor = true;
-            button7.Click += button7_Click;
             // 
             // chart_panel
             // 
-            chart_panel.Location = new Point(20, 26);
+            chart_panel.Location = new Point(3, 26);
             chart_panel.Name = "chart_panel";
-            chart_panel.Size = new Size(405, 247);
+            chart_panel.Size = new Size(518, 224);
             chart_panel.TabIndex = 7;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(215, 8);
+            label5.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Location = new Point(249, 8);
             label5.Name = "label5";
-            label5.Size = new Size(56, 15);
+            label5.Size = new Size(53, 15);
             label5.TabIndex = 6;
             label5.Text = "Plot View";
+            // 
+            // button7
+            // 
+            button7.FlatAppearance.BorderSize = 0;
+            button7.FlatStyle = FlatStyle.Flat;
+            button7.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            button7.Location = new Point(3, 79);
+            button7.Name = "button7";
+            button7.Size = new Size(200, 23);
+            button7.TabIndex = 8;
+            button7.Text = "Clear";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
             // 
             // button11
             // 
             button11.FlatAppearance.BorderSize = 0;
             button11.FlatStyle = FlatStyle.Flat;
-            button11.Location = new Point(431, 279);
+            button11.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            button11.Location = new Point(3, 108);
             button11.Name = "button11";
-            button11.Size = new Size(63, 23);
+            button11.Size = new Size(200, 23);
             button11.TabIndex = 5;
             button11.Text = "Save";
             button11.UseVisualStyleBackColor = true;
             button11.Click += button11_Click;
             // 
-            // button6
-            // 
-            button6.Location = new Point(439, 316);
-            button6.Name = "button6";
-            button6.Size = new Size(75, 23);
-            button6.TabIndex = 1;
-            button6.Text = "button6";
-            button6.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            button5.Location = new Point(358, 316);
-            button5.Name = "button5";
-            button5.Size = new Size(75, 23);
-            button5.TabIndex = 0;
-            button5.Text = "button5";
-            button5.UseVisualStyleBackColor = true;
-            // 
             // panel5
             // 
             panel5.BackColor = Color.FromArgb(122, 87, 120);
-            panel5.Location = new Point(191, 12);
+            panel5.Controls.Add(panel8);
+            panel5.Location = new Point(185, 12);
             panel5.Name = "panel5";
-            panel5.Size = new Size(10, 449);
+            panel5.Size = new Size(2, 409);
             panel5.TabIndex = 8;
+            // 
+            // panel8
+            // 
+            panel8.BackColor = Color.FromArgb(122, 87, 120);
+            panel8.Location = new Point(0, 175);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(810, 2);
+            panel8.TabIndex = 11;
+            // 
+            // panel6
+            // 
+            panel6.BackColor = Color.FromArgb(28, 23, 43);
+            panel6.Controls.Add(button7);
+            panel6.Controls.Add(label4);
+            panel6.Controls.Add(button11);
+            panel6.Controls.Add(textBox2);
+            panel6.ForeColor = Color.FromArgb(205, 23, 72);
+            panel6.Location = new Point(609, 12);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(207, 133);
+            panel6.TabIndex = 9;
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.FromArgb(28, 23, 43);
+            panel7.Controls.Add(pictureBox2);
+            panel7.ForeColor = Color.FromArgb(205, 23, 72);
+            panel7.Location = new Point(12, 321);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(170, 100);
+            panel7.TabIndex = 10;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Location = new Point(3, 22);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(155, 55);
+            pictureBox2.TabIndex = 0;
+            pictureBox2.TabStop = false;
+            // 
+            // panel9
+            // 
+            panel9.BackColor = Color.FromArgb(28, 23, 43);
+            panel9.Controls.Add(button2);
+            panel9.Controls.Add(button4);
+            panel9.Controls.Add(button3);
+            panel9.Controls.Add(button1);
+            panel9.ForeColor = Color.FromArgb(205, 23, 72);
+            panel9.Location = new Point(194, 187);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(90, 173);
+            panel9.TabIndex = 11;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.FromArgb(122, 87, 120);
+            panel3.Controls.Add(panel10);
+            panel3.Location = new Point(185, 149);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(631, 2);
+            panel3.TabIndex = 12;
+            // 
+            // panel10
+            // 
+            panel10.BackColor = Color.FromArgb(122, 87, 120);
+            panel10.Location = new Point(0, 175);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(810, 2);
+            panel10.TabIndex = 11;
             // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(13, 12, 26);
-            ClientSize = new Size(716, 473);
-            Controls.Add(panel5);
-            Controls.Add(panel4);
+            ClientSize = new Size(820, 429);
             Controls.Add(panel3);
             Controls.Add(panel2);
+            Controls.Add(panel9);
+            Controls.Add(panel6);
+            Controls.Add(panel7);
+            Controls.Add(panel5);
             Controls.Add(panel1);
+            Controls.Add(panel4);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             MainMenuStrip = menuStrip1;
             Name = "MainWindow";
             Text = "MainWindow";
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
+            Load += MainWindow_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
@@ -477,11 +521,17 @@
             menuStrip1.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
+            panel5.ResumeLayout(false);
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
+            panel7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            panel9.ResumeLayout(false);
+            panel3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-        private Panel panel3;
         private Label label2;
         private Label label1;
         private PictureBox pictureBox1;
@@ -495,12 +545,7 @@
         private ToolStripMenuItem help;
         private ToolStripMenuItem about;
         private ToolStripMenuItem settings;
-        private Button signUp_btn;
-        private Button signOut_btn;
         private Panel panel4;
-        private Button button6;
-        private Button button5;
-        private Label label3;
         private Button button11;
         private Button button10;
         private Panel panel5;
@@ -509,13 +554,22 @@
         private Label label6;
         private Label label4;
         private TextBox textBox1;
-        private Button signIn_btn;
         private TextBox textBox2;
         private Panel chart_panel;
         private Label label8;
-        private Label label7;
         private TextBox textBox4;
         private TextBox textBox3;
         private Button button7;
+        private Panel panel6;
+        private Panel panel7;
+        private Panel panel9;
+        private Panel panel8;
+        private Button signUp_btn;
+        private Button signIn_btn;
+        private Button signOut_btn;
+        private Label label9;
+        private PictureBox pictureBox2;
+        private Panel panel3;
+        private Panel panel10;
     }
 }

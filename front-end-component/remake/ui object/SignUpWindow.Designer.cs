@@ -28,119 +28,158 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.panel1.SuspendLayout();
-            this.SuspendLayout();
+            panel1 = new Panel();
+            label4 = new Label();
+            textBox3 = new TextBox();
+            button2 = new Button();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
+            textBox1 = new TextBox();
+            textBox2 = new TextBox();
+            pictureBox1 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(256, 330);
-            this.panel1.TabIndex = 3;
+            panel1.Controls.Add(pictureBox3);
+            panel1.Controls.Add(pictureBox2);
+            panel1.Controls.Add(pictureBox1);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(textBox3);
+            panel1.Controls.Add(button2);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(textBox2);
+            panel1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            panel1.Location = new Point(12, 12);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(208, 242);
+            panel1.TabIndex = 3;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(53, 187);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(131, 27);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Confirm Password";
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(55, 143);
+            label4.Name = "label4";
+            label4.Size = new Size(97, 15);
+            label4.TabIndex = 8;
+            label4.Text = "Confirm Password";
             // 
             // textBox3
             // 
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Location = new System.Drawing.Point(28, 217);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(189, 28);
-            this.textBox3.TabIndex = 7;
+            textBox3.BorderStyle = BorderStyle.None;
+            textBox3.Location = new Point(26, 161);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(165, 19);
+            textBox3.TabIndex = 7;
             // 
             // button2
             // 
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(3, 296);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(250, 31);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Sign Up";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            button2.Location = new Point(3, 208);
+            button2.Name = "button2";
+            button2.Size = new Size(202, 31);
+            button2.TabIndex = 6;
+            button2.Text = "Sign Up";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Dubai", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(69, 10);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(106, 45);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Sign Up";
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Light", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(55, 9);
+            label3.Name = "label3";
+            label3.Size = new Size(104, 37);
+            label3.TabIndex = 4;
+            label3.Text = "Sign Up";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(85, 119);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 27);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Password";
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(76, 103);
+            label2.Name = "label2";
+            label2.Size = new Size(55, 15);
+            label2.TabIndex = 3;
+            label2.Text = "Password";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(83, 51);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 27);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Username";
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(76, 63);
+            label1.Name = "label1";
+            label1.Size = new Size(58, 15);
+            label1.TabIndex = 2;
+            label1.Text = "Username";
             // 
             // textBox1
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(28, 81);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(189, 28);
-            this.textBox1.TabIndex = 0;
+            textBox1.BorderStyle = BorderStyle.None;
+            textBox1.Location = new Point(26, 81);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(165, 19);
+            textBox1.TabIndex = 0;
             // 
             // textBox2
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Location = new System.Drawing.Point(28, 149);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(189, 28);
-            this.textBox2.TabIndex = 1;
+            textBox2.BorderStyle = BorderStyle.None;
+            textBox2.Location = new Point(26, 121);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(165, 19);
+            textBox2.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(3, 80);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(20, 20);
+            pictureBox1.TabIndex = 9;
+            pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Location = new Point(3, 120);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(20, 20);
+            pictureBox2.TabIndex = 10;
+            pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Location = new Point(3, 160);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(20, 20);
+            pictureBox3.TabIndex = 11;
+            pictureBox3.TabStop = false;
             // 
             // SignUpWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(280, 354);
-            this.Controls.Add(this.panel1);
-            this.Name = "SignUpWindow";
-            this.Text = "SignUpWindow";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(232, 262);
+            Controls.Add(panel1);
+            Name = "SignUpWindow";
+            Text = "SignUpWindow";
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -154,5 +193,8 @@
         private Label label1;
         private TextBox textBox1;
         private TextBox textBox2;
+        private PictureBox pictureBox3;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox1;
     }
 }

@@ -12,8 +12,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using MathApp.parsers;
+using MathApp.Properties;
 using MathApp.secondary_objects;
 using MathApp.ui_object;
+using MathNet.Numerics.LinearAlgebra.Factorization;
+using Microsoft.VisualBasic.Logging;
 using NCalc;
 using OxyPlot;
 using OxyPlot.Series;
@@ -46,7 +49,13 @@ namespace remake
 
         private JsonParser _configMaker;
         private Setup _currentSetup;
+
+
         private EquationMode _equationMode;
+
+        //variables used in the 
+        private Boolean _offlineMode;
+        private Boolean _signedIn;
 
 
         // chart used in the data display - added here due to the toolbox not being able to see the refference to it
@@ -71,6 +80,9 @@ namespace remake
 
             this._plotView.Dock = DockStyle.Fill;
             this.chart_panel.Controls.Add(this._plotView);
+
+
+
             updateSetup();
         }
 
@@ -143,24 +155,45 @@ namespace remake
             this.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
             this.panel1.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_panel_bg);
             this.panel2.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_panel_bg);
-            this.panel3.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_panel_bg);
             this.panel4.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_panel_bg);
+            this.panel6.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_panel_bg);
+            this.panel7.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_panel_bg);
+            this.panel9.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_panel_bg);
+
+            //ribbons
+            this.panel3.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_ribbon);
             this.panel5.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_ribbon);
+            this.panel8.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_ribbon);
+
 
             //text colors
             this.panel1.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
             this.panel2.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
-            this.panel3.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
             this.panel4.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
             this.panel5.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
+            this.panel6.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
+            this.panel7.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
+            this.panel8.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
+            this.panel9.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
+            this.menuStrip1.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
+
+            //input boxes
+            this.textBox1.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
+            this.textBox2.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
+            this.textBox3.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
+            this.textBox4.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
+
             //menu colors
             this.menuStrip1.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
 
             //some buttons
-            this.signOut_btn.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
-            this.signIn_btn.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
-            this.signUp_btn.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
-            this.button12.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
+            this.button1.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
+            this.button2.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
+            this.button3.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
+            this.button4.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
+            this.button7.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
+            this.button11.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
+
         }
 
 
@@ -208,11 +241,14 @@ namespace remake
                     //applying dark theme
                     applyTheme(this._currentSetup.DarkTheme);
                     setButtonTheme(this._currentSetup.DarkTheme);
+                    this.pictureBox2.Image = _currentSetup.DarkLogo;
+
                     break;
                 case "Light":
                     //applying white theme
                     applyTheme(this._currentSetup.LightTheme);
                     setButtonTheme(this._currentSetup.LightTheme);
+                    this.pictureBox2.Image = _currentSetup.LightLogo;
                     break;
             }
 
@@ -414,12 +450,35 @@ namespace remake
             }
         }
 
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+
+        }
 
 
 
 
+        private void signIn_btn_Click(object sender, EventArgs e)
+        {
+            SignInWindow temporarySignInWindow = new SignInWindow(this._currentSetup);
+            temporarySignInWindow.ShowDialog();
+        }
 
-
+        private void signUp_btn_Click(object sender, EventArgs e)
+        {
+            SignUpWindow temporarySignUpWindow = new SignUpWindow(this._currentSetup);
+            temporarySignUpWindow.ShowDialog();
+        }
     }
 
 
