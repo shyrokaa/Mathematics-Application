@@ -138,9 +138,9 @@
             button10.FlatAppearance.BorderSize = 0;
             button10.FlatStyle = FlatStyle.Flat;
             button10.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            button10.Location = new Point(326, 5);
+            button10.Location = new Point(315, 5);
             button10.Name = "button10";
-            button10.Size = new Size(83, 23);
+            button10.Size = new Size(94, 23);
             button10.TabIndex = 4;
             button10.Text = "History";
             button10.UseVisualStyleBackColor = true;
@@ -179,9 +179,9 @@
             button12.FlatAppearance.BorderSize = 0;
             button12.FlatStyle = FlatStyle.Flat;
             button12.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            button12.Location = new Point(326, 104);
+            button12.Location = new Point(315, 104);
             button12.Name = "button12";
-            button12.Size = new Size(83, 23);
+            button12.Size = new Size(94, 23);
             button12.TabIndex = 7;
             button12.Text = "Compute ";
             button12.UseVisualStyleBackColor = true;

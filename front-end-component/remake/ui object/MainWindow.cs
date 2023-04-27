@@ -264,13 +264,36 @@ namespace remake
 
                     this.signOut_btn.Visible = false;
                 }
-
-
-
-
             }
 
+            switch(this._equationMode)
+            {
+                case EquationMode.Plot:
+                    // show interval
+                    this.label8.Visible = true;
+                    this.textBox3.Visible = true;
+                    this.textBox4.Visible = true;
+                    break;
+                case EquationMode.Equation:
+                    // hide interval
+                    this.label8.Visible = false;
+                    this.textBox3.Visible = false;
+                    this.textBox4.Visible = false;
+                    break;
+                case EquationMode.Calculator:
+                    // hide interval
+                    this.label8.Visible = false;
+                    this.textBox3.Visible = false;
+                    this.textBox4.Visible = false;
+                    break;
+                case EquationMode.Integral:
+                    // hide interval
+                    this.label8.Visible = false;
+                    this.textBox3.Visible = false;
+                    this.textBox4.Visible = false;
+                    break;
 
+            }
 
 
         }
@@ -323,24 +346,28 @@ namespace remake
         {
             this._equationMode = EquationMode.Plot;
             updateSetup();
+            updateApplicationState();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             this._equationMode = EquationMode.Equation;
             updateSetup();
+            updateApplicationState();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             this._equationMode = EquationMode.Calculator;
             updateSetup();
+            updateApplicationState();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             this._equationMode = EquationMode.Integral;
             updateSetup();
+            updateApplicationState();
         }
 
 
@@ -509,7 +536,10 @@ namespace remake
 
         private void button10_Click(object sender, EventArgs e)
         {
-
+            if(!this._signedIn)
+            {
+                MessageBox.Show("Please Sign In in order to access your command history!");
+            }
         }
 
 

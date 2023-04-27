@@ -47,9 +47,9 @@
             // 
             textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Location = new Point(22, 95);
+            textBox1.Location = new Point(29, 95);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(175, 19);
+            textBox1.Size = new Size(168, 19);
             textBox1.TabIndex = 0;
             // 
             // textBox2
