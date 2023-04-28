@@ -1,5 +1,7 @@
 import random
 import numpy as np
+import sys
+
 
 # Define the fitness function to minimize
 def evaluate(individual, equation, num_vars):
@@ -10,14 +12,16 @@ def evaluate(individual, equation, num_vars):
     values = tuple(individual[i] for i in range(num_vars))
     return func(*values)
 
+
 # Create the individual
-def create_individual(num_vars):
+def create_individual(num_vars, interval_low, interval_high):
     return np.array([random.uniform(-5.0, 5.0) for _ in range(num_vars)])
 
 
 # Initialize the population
-def create_population(size, num_vars):
-    return [create_individual(num_vars) for _ in range(size)]
+def create_population(size, num_vars, interval_low, interval_high):
+    return [create_individual(num_vars, interval_low, interval_high) for _ in range(size)]
+
 
 # Select the best individuals
 def select(population, num_parents, equation, num_vars):
@@ -55,12 +59,17 @@ def main():
     num_generations = 100
     population_size = 50
     num_parents = 5
-    num_vars = 2
-    offspring_size = (population_size - num_parents, num_vars)
-    equation = "(x0-2)**2 + (x1-3)**2"  # Change this to the equation you want to minimize
 
+    # reading theese from system calls
+
+    num_vars =  int(sys.argv[1])
+    top =  int(sys.argv[2])
+    bottom =  int(sys.argv[3])
+    equation =  (sys.argv[4]) # Change this to the equation you want to minimize
+
+    offspring_size = (population_size - num_parents, num_vars)
     # Initialize the population
-    population = create_population(population_size, num_vars)
+    population = create_population(population_size, num_vars, interval_low=top, interval_high=bottom)
 
     # Run the evolution
     for gen in range(num_generations):
@@ -92,6 +101,7 @@ def main():
             best_idx = np.argmin(population_fitnesses)
             print(
                 f"Final result: Best individual = {population[best_idx]}, Best fitness = {population_fitnesses[best_idx]}")
+
 
 if __name__ == "__main__":
     main()

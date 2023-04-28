@@ -81,11 +81,13 @@ namespace remake
             this._plotView.Dock = DockStyle.Fill;
             this.chart_panel.Controls.Add(this._plotView);
 
-
+            // Add an empty series to the plot model
+            this._plotModel.Series.Add(new LineSeries());
 
             updateSetup();
             updateApplicationState();
         }
+
 
 
         // API ACCESS RELATED FUNCTIONS
@@ -183,12 +185,19 @@ namespace remake
             this.textBox2.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
             this.textBox3.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
             this.textBox4.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
-
+            this.textBox5.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
+            this.textBox6.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
+            this.textBox7.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
+            this.textBox8.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
 
             this.textBox1.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
             this.textBox2.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
             this.textBox3.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
             this.textBox4.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
+            this.textBox5.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
+            this.textBox6.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
+            this.textBox7.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
+            this.textBox8.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
 
             //menu colors
             this.menuStrip1.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
@@ -266,36 +275,81 @@ namespace remake
                 }
             }
 
-            switch(this._equationMode)
+            switch (this._equationMode)
             {
                 case EquationMode.Plot:
                     // show interval
                     this.label8.Visible = true;
+                    
                     this.textBox3.Visible = true;
                     this.textBox4.Visible = true;
+                    // hide genetic algorithm inputs
+                    this.label3.Visible = false;
+                    this.label7.Visible = false;
+                    this.label10.Visible = false;
+                    this.label11.Visible = false;
+                    
+                    this.textBox5.Visible = false;
+                    this.textBox6.Visible = false;
+                    this.textBox7.Visible = false;
+                    this.textBox8.Visible = false;
+
                     break;
                 case EquationMode.Equation:
-                    // hide interval
-                    this.label8.Visible = false;
-                    this.textBox3.Visible = false;
-                    this.textBox4.Visible = false;
+                    // show interval
+                    this.label8.Visible = true;
+                    
+                    this.textBox3.Visible = true;
+                    this.textBox4.Visible = true;
+
+                    // show genetic algorithm inputs
+                    this.label3.Visible = true;
+                    this.label7.Visible = true;
+                    this.label10.Visible = true;
+                    this.label11.Visible = true;
+
+                    this.textBox5.Visible = true;
+                    this.textBox6.Visible = true;
+                    this.textBox7.Visible = true;
+                    this.textBox8.Visible = true;
+
+
                     break;
                 case EquationMode.Calculator:
                     // hide interval
                     this.label8.Visible = false;
+                    
                     this.textBox3.Visible = false;
                     this.textBox4.Visible = false;
+                    // hide genetic algorithm inputs
+                    this.label3.Visible = false;
+                    this.label7.Visible = false;
+                    this.label10.Visible = false;
+                    this.label11.Visible = false;
+
+                    this.textBox5.Visible = false;
+                    this.textBox6.Visible = false;
+                    this.textBox7.Visible = false;
+                    this.textBox8.Visible = false;
                     break;
                 case EquationMode.Integral:
                     // hide interval
                     this.label8.Visible = false;
+                    
                     this.textBox3.Visible = false;
                     this.textBox4.Visible = false;
+                    // hide genetic algorithm inputs
+                    this.label3.Visible = false;
+                    this.label7.Visible = false;
+                    this.label10.Visible = false;
+                    this.label11.Visible = false;
+
+                    this.textBox5.Visible = false;
+                    this.textBox6.Visible = false;
+                    this.textBox7.Visible = false;
+                    this.textBox8.Visible = false;
                     break;
-
             }
-
-
         }
 
 
@@ -536,7 +590,7 @@ namespace remake
 
         private void button10_Click(object sender, EventArgs e)
         {
-            if(!this._signedIn)
+            if (!this._signedIn)
             {
                 MessageBox.Show("Please Sign In in order to access your command history!");
             }
@@ -555,6 +609,11 @@ namespace remake
         {
             SignUpWindow temporarySignUpWindow = new SignUpWindow(this._currentSetup);
             temporarySignUpWindow.ShowDialog();
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 

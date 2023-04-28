@@ -67,6 +67,14 @@
             panel9 = new Panel();
             panel3 = new Panel();
             panel10 = new Panel();
+            label3 = new Label();
+            label7 = new Label();
+            textBox5 = new TextBox();
+            textBox6 = new TextBox();
+            label10 = new Label();
+            textBox7 = new TextBox();
+            label11 = new Label();
+            textBox8 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
@@ -110,6 +118,14 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(28, 23, 43);
+            panel2.Controls.Add(textBox8);
+            panel2.Controls.Add(label11);
+            panel2.Controls.Add(textBox7);
+            panel2.Controls.Add(label10);
+            panel2.Controls.Add(textBox6);
+            panel2.Controls.Add(textBox5);
+            panel2.Controls.Add(label7);
+            panel2.Controls.Add(label3);
             panel2.Controls.Add(label8);
             panel2.Controls.Add(button10);
             panel2.Controls.Add(textBox4);
@@ -494,6 +510,79 @@
             panel10.Size = new Size(810, 2);
             panel10.TabIndex = 11;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(7, 57);
+            label3.Name = "label3";
+            label3.Size = new Size(86, 15);
+            label3.TabIndex = 17;
+            label3.Text = "Nr. of variables";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(7, 79);
+            label7.Name = "label7";
+            label7.Size = new Size(102, 15);
+            label7.TabIndex = 18;
+            label7.Text = "Nr. of generations";
+            // 
+            // textBox5
+            // 
+            textBox5.BorderStyle = BorderStyle.None;
+            textBox5.Location = new Point(111, 57);
+            textBox5.Multiline = true;
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(28, 15);
+            textBox5.TabIndex = 19;
+            textBox5.TextChanged += textBox5_TextChanged;
+            // 
+            // textBox6
+            // 
+            textBox6.BorderStyle = BorderStyle.None;
+            textBox6.Location = new Point(111, 79);
+            textBox6.Multiline = true;
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(28, 15);
+            textBox6.TabIndex = 20;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(145, 57);
+            label10.Name = "label10";
+            label10.Size = new Size(79, 15);
+            label10.TabIndex = 21;
+            label10.Text = "Nr. of parents";
+            // 
+            // textBox7
+            // 
+            textBox7.BorderStyle = BorderStyle.None;
+            textBox7.Location = new Point(244, 57);
+            textBox7.Multiline = true;
+            textBox7.Name = "textBox7";
+            textBox7.Size = new Size(28, 15);
+            textBox7.TabIndex = 22;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(145, 79);
+            label11.Name = "label11";
+            label11.Size = new Size(87, 15);
+            label11.TabIndex = 23;
+            label11.Text = "Population size";
+            // 
+            // textBox8
+            // 
+            textBox8.BorderStyle = BorderStyle.None;
+            textBox8.Location = new Point(244, 79);
+            textBox8.Multiline = true;
+            textBox8.Name = "textBox8";
+            textBox8.Size = new Size(28, 15);
+            textBox8.TabIndex = 24;
+            // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -572,5 +661,13 @@
         private PictureBox pictureBox2;
         private Panel panel3;
         private Panel panel10;
+        private TextBox textBox8;
+        private Label label11;
+        private TextBox textBox7;
+        private Label label10;
+        private TextBox textBox6;
+        private TextBox textBox5;
+        private Label label7;
+        private Label label3;
     }
 }

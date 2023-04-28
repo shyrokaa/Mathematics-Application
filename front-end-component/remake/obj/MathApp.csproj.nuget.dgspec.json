@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\university\\4\\licenta\\repo\\Mathematics-Application\\front-end-component\\remake\\MathApp.csproj": {}
+    "D:\\4\\Lic\\Mathematics-Application\\front-end-component\\remake\\MathApp.csproj": {}
   },
   "projects": {
-    "E:\\university\\4\\licenta\\repo\\Mathematics-Application\\front-end-component\\remake\\MathApp.csproj": {
+    "D:\\4\\Lic\\Mathematics-Application\\front-end-component\\remake\\MathApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\university\\4\\licenta\\repo\\Mathematics-Application\\front-end-component\\remake\\MathApp.csproj",
+        "projectUniqueName": "D:\\4\\Lic\\Mathematics-Application\\front-end-component\\remake\\MathApp.csproj",
         "projectName": "MathApp",
-        "projectPath": "E:\\university\\4\\licenta\\repo\\Mathematics-Application\\front-end-component\\remake\\MathApp.csproj",
-        "packagesPath": "C:\\Users\\Shyrokaa\\.nuget\\packages\\",
-        "outputPath": "E:\\university\\4\\licenta\\repo\\Mathematics-Application\\front-end-component\\remake\\obj\\",
+        "projectPath": "D:\\4\\Lic\\Mathematics-Application\\front-end-component\\remake\\MathApp.csproj",
+        "packagesPath": "C:\\Users\\ScrapMetal\\.nuget\\packages\\",
+        "outputPath": "D:\\4\\Lic\\Mathematics-Application\\front-end-component\\remake\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Shyrokaa\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\ScrapMetal\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -84,7 +80,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
