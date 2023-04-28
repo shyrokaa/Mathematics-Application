@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -280,7 +281,7 @@ namespace remake
                 case EquationMode.Plot:
                     // show interval
                     this.label8.Visible = true;
-                    
+
                     this.textBox3.Visible = true;
                     this.textBox4.Visible = true;
                     // hide genetic algorithm inputs
@@ -288,7 +289,7 @@ namespace remake
                     this.label7.Visible = false;
                     this.label10.Visible = false;
                     this.label11.Visible = false;
-                    
+
                     this.textBox5.Visible = false;
                     this.textBox6.Visible = false;
                     this.textBox7.Visible = false;
@@ -298,7 +299,7 @@ namespace remake
                 case EquationMode.Equation:
                     // show interval
                     this.label8.Visible = true;
-                    
+
                     this.textBox3.Visible = true;
                     this.textBox4.Visible = true;
 
@@ -318,7 +319,7 @@ namespace remake
                 case EquationMode.Calculator:
                     // hide interval
                     this.label8.Visible = false;
-                    
+
                     this.textBox3.Visible = false;
                     this.textBox4.Visible = false;
                     // hide genetic algorithm inputs
@@ -335,7 +336,7 @@ namespace remake
                 case EquationMode.Integral:
                     // hide interval
                     this.label8.Visible = false;
-                    
+
                     this.textBox3.Visible = false;
                     this.textBox4.Visible = false;
                     // hide genetic algorithm inputs
@@ -382,6 +383,20 @@ namespace remake
 
         }
 
+
+        private void resetTextBoxes()
+        {
+            this.textBox1.Text = string.Empty;
+            this.textBox2.Text = string.Empty;
+            this.textBox3.Text = string.Empty;
+            this.textBox4.Text = string.Empty;
+            this.textBox5.Text = string.Empty;
+            this.textBox6.Text = string.Empty;
+            this.textBox7.Text = string.Empty;
+            this.textBox8.Text = string.Empty;
+        }
+
+
         /// <summary>
         /// Function that updates the user panel depending on the network configuration of the app
         /// </summary>
@@ -401,6 +416,9 @@ namespace remake
             this._equationMode = EquationMode.Plot;
             updateSetup();
             updateApplicationState();
+            resetTextBoxes();
+
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -408,6 +426,7 @@ namespace remake
             this._equationMode = EquationMode.Equation;
             updateSetup();
             updateApplicationState();
+            resetTextBoxes();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -415,6 +434,7 @@ namespace remake
             this._equationMode = EquationMode.Calculator;
             updateSetup();
             updateApplicationState();
+            resetTextBoxes();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -422,6 +442,7 @@ namespace remake
             this._equationMode = EquationMode.Integral;
             updateSetup();
             updateApplicationState();
+            resetTextBoxes();
         }
 
 
@@ -498,15 +519,35 @@ namespace remake
 
         private void handleEquation(object sender, EventArgs e)
         {
+            // Get the input parameters from the text boxes
             string equation = this.textBox1.Text;
+            string interval_bottom = this.textBox4.Text;
+            string interval_top = this.textBox3.Text;
+            string nr_vals = this.textBox4.Text;
+            string ng_generations = this.textBox6.Text;
+            string nr_parents = this.textBox7.Text;
+            string population_size = this.textBox8.Text;
 
-            // Find the solution of the equation using the EquationRequestParser method from RequestHandler class
-            RequestHandler requestHandler = new RequestHandler();
-            string solution = requestHandler.EquationRequestParser(equation);
+            // Set up the Python script arguments
+            string[] args = new string[] { equation, interval_bottom, interval_top, nr_vals, ng_generations, nr_parents, population_size };
 
-            // Update the solution in the UI
-            this.textBox2.Text = solution;
+            // Call the Python script and capture the output
+            ProcessStartInfo start = new ProcessStartInfo();
+            start.FileName = "python";
+            start.Arguments = "genetic_algorithm.py " + String.Join(" ", args);
+            start.UseShellExecute = false;
+            start.RedirectStandardOutput = true;
+            using (Process process = Process.Start(start))
+            {
+                using (StreamReader reader = process.StandardOutput)
+                {
+                    string result = reader.ReadToEnd();
+                    // Update the solution in the UI
+                    this.textBox2.Text = result;
+                }
+            }
         }
+
 
 
         private void handleCalculator(object sender, EventArgs e)
@@ -612,6 +653,11 @@ namespace remake
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
         {
 
         }

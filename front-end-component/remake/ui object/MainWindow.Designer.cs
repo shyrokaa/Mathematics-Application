@@ -32,6 +32,14 @@
             label1 = new Label();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
+            textBox8 = new TextBox();
+            label11 = new Label();
+            textBox7 = new TextBox();
+            label10 = new Label();
+            textBox6 = new TextBox();
+            textBox5 = new TextBox();
+            label7 = new Label();
+            label3 = new Label();
             label8 = new Label();
             button10 = new Button();
             textBox4 = new TextBox();
@@ -67,14 +75,6 @@
             panel9 = new Panel();
             panel3 = new Panel();
             panel10 = new Panel();
-            label3 = new Label();
-            label7 = new Label();
-            textBox5 = new TextBox();
-            textBox6 = new TextBox();
-            label10 = new Label();
-            textBox7 = new TextBox();
-            label11 = new Label();
-            textBox8 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
@@ -138,6 +138,83 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(412, 133);
             panel2.TabIndex = 5;
+            // 
+            // textBox8
+            // 
+            textBox8.BorderStyle = BorderStyle.None;
+            textBox8.Location = new Point(244, 79);
+            textBox8.Multiline = true;
+            textBox8.Name = "textBox8";
+            textBox8.Size = new Size(28, 15);
+            textBox8.TabIndex = 24;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label11.Location = new Point(145, 79);
+            label11.Name = "label11";
+            label11.Size = new Size(82, 15);
+            label11.TabIndex = 23;
+            label11.Text = "Population size";
+            // 
+            // textBox7
+            // 
+            textBox7.BorderStyle = BorderStyle.None;
+            textBox7.Location = new Point(244, 57);
+            textBox7.Multiline = true;
+            textBox7.Name = "textBox7";
+            textBox7.Size = new Size(28, 15);
+            textBox7.TabIndex = 22;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label10.Location = new Point(145, 57);
+            label10.Name = "label10";
+            label10.Size = new Size(75, 15);
+            label10.TabIndex = 21;
+            label10.Text = "Nr. of parents";
+            // 
+            // textBox6
+            // 
+            textBox6.BorderStyle = BorderStyle.None;
+            textBox6.Location = new Point(111, 79);
+            textBox6.Multiline = true;
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(28, 15);
+            textBox6.TabIndex = 20;
+            // 
+            // textBox5
+            // 
+            textBox5.BorderStyle = BorderStyle.None;
+            textBox5.Location = new Point(111, 57);
+            textBox5.Multiline = true;
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(28, 15);
+            textBox5.TabIndex = 19;
+            textBox5.TextChanged += textBox5_TextChanged;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Location = new Point(7, 79);
+            label7.Name = "label7";
+            label7.Size = new Size(96, 15);
+            label7.TabIndex = 18;
+            label7.Text = "Nr. of generations";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(7, 57);
+            label3.Name = "label3";
+            label3.Size = new Size(80, 15);
+            label3.TabIndex = 17;
+            label3.Text = "Nr. of variables";
             // 
             // label8
             // 
@@ -254,6 +331,7 @@
             // 
             signUp_btn.FlatAppearance.BorderSize = 0;
             signUp_btn.FlatStyle = FlatStyle.Flat;
+            signUp_btn.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
             signUp_btn.Location = new Point(3, 246);
             signUp_btn.Name = "signUp_btn";
             signUp_btn.Size = new Size(164, 23);
@@ -286,6 +364,7 @@
             // 
             signIn_btn.FlatAppearance.BorderSize = 0;
             signIn_btn.FlatStyle = FlatStyle.Flat;
+            signIn_btn.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
             signIn_btn.Location = new Point(3, 217);
             signIn_btn.Name = "signIn_btn";
             signIn_btn.Size = new Size(164, 23);
@@ -308,21 +387,24 @@
             // 
             // help
             // 
+            help.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
             help.Name = "help";
-            help.Size = new Size(44, 20);
+            help.Size = new Size(42, 20);
             help.Text = "Help";
             // 
             // about
             // 
             about.BackgroundImageLayout = ImageLayout.Center;
+            about.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
             about.Name = "about";
-            about.Size = new Size(52, 20);
+            about.Size = new Size(51, 20);
             about.Text = "About";
             // 
             // settings
             // 
+            settings.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
             settings.Name = "settings";
-            settings.Size = new Size(61, 20);
+            settings.Size = new Size(59, 20);
             settings.Text = "Settings";
             settings.Click += settings_Click;
             // 
@@ -388,6 +470,7 @@
             panel4.Name = "panel4";
             panel4.Size = new Size(529, 264);
             panel4.TabIndex = 7;
+            panel4.Paint += panel4_Paint;
             // 
             // chart_panel
             // 
@@ -488,9 +571,9 @@
             panel9.Controls.Add(button3);
             panel9.Controls.Add(button1);
             panel9.ForeColor = Color.FromArgb(205, 23, 72);
-            panel9.Location = new Point(194, 187);
+            panel9.Location = new Point(191, 187);
             panel9.Name = "panel9";
-            panel9.Size = new Size(90, 173);
+            panel9.Size = new Size(93, 173);
             panel9.TabIndex = 11;
             // 
             // panel3
@@ -509,79 +592,6 @@
             panel10.Name = "panel10";
             panel10.Size = new Size(810, 2);
             panel10.TabIndex = 11;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(7, 57);
-            label3.Name = "label3";
-            label3.Size = new Size(86, 15);
-            label3.TabIndex = 17;
-            label3.Text = "Nr. of variables";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(7, 79);
-            label7.Name = "label7";
-            label7.Size = new Size(102, 15);
-            label7.TabIndex = 18;
-            label7.Text = "Nr. of generations";
-            // 
-            // textBox5
-            // 
-            textBox5.BorderStyle = BorderStyle.None;
-            textBox5.Location = new Point(111, 57);
-            textBox5.Multiline = true;
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(28, 15);
-            textBox5.TabIndex = 19;
-            textBox5.TextChanged += textBox5_TextChanged;
-            // 
-            // textBox6
-            // 
-            textBox6.BorderStyle = BorderStyle.None;
-            textBox6.Location = new Point(111, 79);
-            textBox6.Multiline = true;
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(28, 15);
-            textBox6.TabIndex = 20;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(145, 57);
-            label10.Name = "label10";
-            label10.Size = new Size(79, 15);
-            label10.TabIndex = 21;
-            label10.Text = "Nr. of parents";
-            // 
-            // textBox7
-            // 
-            textBox7.BorderStyle = BorderStyle.None;
-            textBox7.Location = new Point(244, 57);
-            textBox7.Multiline = true;
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(28, 15);
-            textBox7.TabIndex = 22;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(145, 79);
-            label11.Name = "label11";
-            label11.Size = new Size(87, 15);
-            label11.TabIndex = 23;
-            label11.Text = "Population size";
-            // 
-            // textBox8
-            // 
-            textBox8.BorderStyle = BorderStyle.None;
-            textBox8.Location = new Point(244, 79);
-            textBox8.Multiline = true;
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(28, 15);
-            textBox8.TabIndex = 24;
             // 
             // MainWindow
             // 

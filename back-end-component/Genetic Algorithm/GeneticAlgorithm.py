@@ -4,18 +4,21 @@ import sys
 
 
 # Define the fitness function to minimize
-def evaluate(individual, equation, num_vars):
+def evaluate(individual, equation):
     # Convert the equation string to a function using eval()
-    equation_str = "lambda " + ", ".join([f"x{i}" for i in range(num_vars)]) + ": " + equation
+    equation_str = "lambda " + ", ".join([f"x{i}" for i in range(len(individual))]) + ": " + equation
     func = eval(equation_str)
     # Evaluate the function with the current individual's values
-    values = tuple(individual[i] for i in range(num_vars))
-    return func(*values)
+    values = tuple(individual)
+    fitness = func(*values)
+    # Calculate the fitness as the absolute distance from 0
+    fitness = abs(fitness)
+    return fitness
 
 
 # Create the individual
-def create_individual(num_vars, interval_low, interval_high):
-    return np.array([random.uniform(-5.0, 5.0) for _ in range(num_vars)])
+def create_individual(size, interval_low, interval_high):
+    return np.array([random.uniform(interval_low, interval_high) for _ in range(size)])
 
 
 # Initialize the population
@@ -24,8 +27,8 @@ def create_population(size, num_vars, interval_low, interval_high):
 
 
 # Select the best individuals
-def select(population, num_parents, equation, num_vars):
-    fitnesses = [evaluate(individual, equation, num_vars) for individual in population]
+def select(population, num_parents, equation):
+    fitnesses = [evaluate(individual, equation) for individual in population]
     parents = np.empty((num_parents, population[0].shape[0]))
     for i in range(num_parents):
         best_idx = np.argmin(fitnesses)
@@ -53,54 +56,68 @@ def mutate(offspring):
         offspring[i, mutation_idx] += random.uniform(-1.0, 1.0)
     return offspring
 
-
 def main():
     # Define the genetic algorithm parameters
-    num_generations = 100
-    population_size = 50
-    num_parents = 5
+    num_generations = int(sys.argv[1])
+    population_size = int(sys.argv[2])
+    num_parents = int(sys.argv[3])
+    num_vars = int(sys.argv[4])
+    bottom = int(sys.argv[5])
+    top = int(sys.argv[6])
+    equation = sys.argv[7]
 
-    # reading theese from system calls
+    # Define the fitness function
+    def evaluate(individual):
+        # Convert the equation string to a function using eval()
+        equation_str = "lambda " + ", ".join([f"x{i}" for i in range(num_vars)]) + ": " + equation
+        func = eval(equation_str)
+        # Evaluate the function with the current individual's values
+        values = tuple(individual[i] for i in range(num_vars))
+        fitness = func(*values)
+        # Calculate the fitness as the absolute distance from 0
+        fitness = abs(fitness)
+        return fitness
 
-    num_vars =  int(sys.argv[1])
-    top =  int(sys.argv[2])
-    bottom =  int(sys.argv[3])
-    equation =  (sys.argv[4]) # Change this to the equation you want to minimize
+    # Create the individual
+    def create_individual():
+        return np.array([random.uniform(bottom, top) for _ in range(num_vars)])
 
-    offspring_size = (population_size - num_parents, num_vars)
     # Initialize the population
-    population = create_population(population_size, num_vars, interval_low=top, interval_high=bottom)
+    population = [create_individual() for _ in range(population_size)]
 
     # Run the evolution
     for gen in range(num_generations):
         # Select the parents
-        parents = select(population, num_parents, equation, num_vars)
+        fitnesses = [evaluate(individual) for individual in population]
+        parents = [population[i] for i in np.argsort(fitnesses)[:num_parents]]
 
         # Create the offspring
-        offspring = crossover(parents, offspring_size)
+        offspring = []
+        for i in range(population_size - num_parents):
+            # Select two parents randomly
+            parent1 = random.choice(parents)
+            parent2 = random.choice(parents)
+            # Perform crossover
+            child = np.empty(num_vars)
+            crossover_point = random.randint(0, num_vars - 1)
+            child[:crossover_point] = parent1[:crossover_point]
+            child[crossover_point:] = parent2[crossover_point:]
+            # Perform mutation
+            mutation_prob = 1.0 / num_vars
+            for j in range(num_vars):
+                if random.random() < mutation_prob:
+                    child[j] += random.uniform(-1.0, 1.0)
+                    child[j] = max(child[j], bottom)
+                    child[j] = min(child[j], top)
+            offspring.append(child)
 
-        # Mutate the offspring
-        offspring = mutate(offspring)
+        # Replace the old population with the new population
+        population = parents + offspring
 
-        # Evaluate the fitness of the offspring
-        offspring_fitnesses = [evaluate(individual, equation, num_vars) for individual in offspring]
-
-        # Replace the worst individuals in the population with the offspring
-        population_fitnesses = [evaluate(individual, equation, num_vars) for individual in population]
-        for i in range(len(offspring)):
-            worst_idx = np.argmax(population_fitnesses)
-            if offspring_fitnesses[i] < population_fitnesses[worst_idx]:
-                population[worst_idx] = offspring[i]
-                population_fitnesses[worst_idx] = offspring_fitnesses[i]
-                # Print the best individual in the current generation
-                best_idx = np.argmin(population_fitnesses)
-                print(
-                    f"Generation {gen + 1}: Best individual = {population[best_idx]}, Best fitness = {population_fitnesses[best_idx]}")
-
-            # Print the final best individual
-            best_idx = np.argmin(population_fitnesses)
-            print(
-                f"Final result: Best individual = {population[best_idx]}, Best fitness = {population_fitnesses[best_idx]}")
+        # Print the best solution so far
+        fitnesses = [evaluate(individual) for individual in population]
+        best_idx = np.argmin(fitnesses)
+        print(f"Generation {gen+1}: Best solution = {population[best_idx]}")
 
 
 if __name__ == "__main__":
