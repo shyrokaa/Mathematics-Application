@@ -31,11 +31,10 @@ namespace MathApp.secondary_objects
             return new Setup(networkingDisabled, selectedColor);
         }
 
-        public void UpdateJson(bool networkingDisabled, string selectedColor)
+        public void UpdateJson( string selectedColor)
         {
             var json = File.ReadAllText(this.configPath);
             dynamic jsonObj = JObject.Parse(json);
-            jsonObj.Program.Config.networking_disabled = networkingDisabled;
             jsonObj.Program.Config.selected_color = selectedColor;
 
             var output = JsonConvert.SerializeObject(jsonObj, Newtonsoft.Json.Formatting.Indented);

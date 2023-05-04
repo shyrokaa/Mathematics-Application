@@ -1,12 +1,11 @@
-﻿using Antlr.Runtime;
-using MathApp.algorithms;
-using NCalc;
+﻿using NCalc;
+using Newtonsoft.Json;
 using OxyPlot;
 using OxyPlot.Series;
-using System.Data;
-using System.Globalization;
-using System.Linq.Dynamic.Core.Parser;
-using System.Numerics;
+
+using System.Diagnostics;
+using System.Net.Http.Headers;
+using System.Text;
 
 namespace MathApp.parsers
 {
@@ -108,17 +107,63 @@ namespace MathApp.parsers
         }
 
 
-        // Genetic algorithm
-        public string EquationRequestParser(string request)
+        // Genetic algorithm request to the specific flask service
+        public async Task<string> EquationRequestParserAsync(string equation, string intervalBottom, string intervalTop, string nrVals, string ngGenerations, string nrParents, string populationSize)
         {
-            GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm();
-            // use the SolveEquation method to find the solution
-            Complex solution = geneticAlgorithm.SolveEquation(request);
+            // Set up the request body as a JSON object
+            var requestBody = new
+            {
+                generations = ngGenerations,
+                population_size = populationSize,
+                num_parents = nrParents,
+                num_vars = nrVals,
+                bottom = intervalBottom,
+                top = intervalTop,
+                equation = equation
+            };
+            var json = JsonConvert.SerializeObject(requestBody);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
 
-            // return the solution as a string
-            return $"The solution to the equation {request} is {solution}";
+            // Set up the request URL and headers
+            string apiUrl = "http://localhost:5000/genetic_algorithm";
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            // Send the POST request and read the response
+            HttpResponseMessage response = await client.PostAsync(apiUrl, data);
+            string result = await response.Content.ReadAsStringAsync();
+
+            return result;
         }
 
+
+        // Integrate request to the specific flask service
+        public async Task<string> IntegralRequestParserAsync(string function, string intervalBottom, string intervalTop, string nrTrapezoids)
+        {
+            // Set up the request body as a JSON object
+            var requestBody = new
+            {
+                function = function,
+                a = intervalBottom,
+                b = intervalTop,
+                n = nrTrapezoids
+            };
+            var json = JsonConvert.SerializeObject(requestBody);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            // Set up the request URL and headers
+            string apiUrl = "http://localhost:5000/integrate_trapezoid";
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            // Send the POST request and read the response
+            HttpResponseMessage response = await client.PostAsync(apiUrl, data);
+            string result = await response.Content.ReadAsStringAsync();
+
+            return result;
+        }
 
 
         // Calculator

@@ -56,24 +56,37 @@ def mutate(offspring):
         offspring[i, mutation_idx] += random.uniform(-1.0, 1.0)
     return offspring
 
-def main():
-    # Define the genetic algorithm parameters
-    num_generations = int(sys.argv[1])
-    population_size = int(sys.argv[2])
-    num_parents = int(sys.argv[3])
-    num_vars = int(sys.argv[4])
-    bottom = int(sys.argv[5])
-    top = int(sys.argv[6])
-    equation = sys.argv[7]
+
+def run_genetic_algorithm(data):
+    # Read the genetic algorithm parameters from the data dictionary
+    num_generations = int(data['generations'])
+    population_size = int(data['population_size'])
+    num_parents = int(data['num_parents'])
+    num_vars = int(data['num_vars'])
+    bottom = int(data['bottom'])
+    top = int(data['top'])
+    equation = data['equation']
 
     # Define the fitness function
     def evaluate(individual):
         # Convert the equation string to a function using eval()
         equation_str = "lambda " + ", ".join([f"x{i}" for i in range(num_vars)]) + ": " + equation
-        func = eval(equation_str)
+        try:
+            func = eval(equation_str)
+        except Exception as e:
+            with open("results.txt", "w") as file:
+                file.write(f"Error: {e}")
+            return
+
         # Evaluate the function with the current individual's values
         values = tuple(individual[i] for i in range(num_vars))
-        fitness = func(*values)
+        try:
+            fitness = func(*values)
+        except Exception as e:
+            with open("results.txt", "w") as file:
+                file.write(f"Error: {e}")
+            return
+
         # Calculate the fitness as the absolute distance from 0
         fitness = abs(fitness)
         return fitness
@@ -89,6 +102,8 @@ def main():
     for gen in range(num_generations):
         # Select the parents
         fitnesses = [evaluate(individual) for individual in population]
+        if None in fitnesses:
+            return
         parents = [population[i] for i in np.argsort(fitnesses)[:num_parents]]
 
         # Create the offspring
@@ -114,11 +129,10 @@ def main():
         # Replace the old population with the new population
         population = parents + offspring
 
-        # Print the best solution so far
-        fitnesses = [evaluate(individual) for individual in population]
-        best_idx = np.argmin(fitnesses)
-        print(f"Generation {gen+1}: Best solution = {population[best_idx]}")
-
-
-if __name__ == "__main__":
-    main()
+    # Write the best solution to a file
+    fitnesses = [evaluate(individual) for individual in population]
+    if None in fitnesses:
+        return
+    best_idx = np.argmin(fitnesses)
+    best_solution = " ".join(str(x) for x in population[best_idx])
+    return best_solution

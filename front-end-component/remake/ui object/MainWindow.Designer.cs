@@ -75,6 +75,8 @@
             panel9 = new Panel();
             panel3 = new Panel();
             panel10 = new Panel();
+            textBox9 = new TextBox();
+            label12 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
@@ -118,6 +120,8 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(28, 23, 43);
+            panel2.Controls.Add(label12);
+            panel2.Controls.Add(textBox9);
             panel2.Controls.Add(textBox8);
             panel2.Controls.Add(label11);
             panel2.Controls.Add(textBox7);
@@ -147,6 +151,7 @@
             textBox8.Name = "textBox8";
             textBox8.Size = new Size(28, 15);
             textBox8.TabIndex = 24;
+            textBox8.Text = "100";
             // 
             // label11
             // 
@@ -166,6 +171,7 @@
             textBox7.Name = "textBox7";
             textBox7.Size = new Size(28, 15);
             textBox7.TabIndex = 22;
+            textBox7.Text = "5";
             // 
             // label10
             // 
@@ -185,6 +191,7 @@
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(28, 15);
             textBox6.TabIndex = 20;
+            textBox6.Text = "100";
             // 
             // textBox5
             // 
@@ -194,6 +201,7 @@
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(28, 15);
             textBox5.TabIndex = 19;
+            textBox5.Text = "1";
             textBox5.TextChanged += textBox5_TextChanged;
             // 
             // label7
@@ -559,7 +567,7 @@
             // 
             pictureBox2.Location = new Point(3, 22);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(155, 55);
+            pictureBox2.Size = new Size(164, 55);
             pictureBox2.TabIndex = 0;
             pictureBox2.TabStop = false;
             // 
@@ -592,6 +600,25 @@
             panel10.Name = "panel10";
             panel10.Size = new Size(810, 2);
             panel10.TabIndex = 11;
+            // 
+            // textBox9
+            // 
+            textBox9.BorderStyle = BorderStyle.None;
+            textBox9.Location = new Point(244, 30);
+            textBox9.Multiline = true;
+            textBox9.Name = "textBox9";
+            textBox9.Size = new Size(28, 15);
+            textBox9.TabIndex = 25;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label12.Location = new Point(145, 32);
+            label12.Name = "label12";
+            label12.Size = new Size(91, 15);
+            label12.TabIndex = 26;
+            label12.Text = "Nr. of trapezoids";
             // 
             // MainWindow
             // 
@@ -679,5 +706,7 @@
         private TextBox textBox5;
         private Label label7;
         private Label label3;
+        private Label label12;
+        private TextBox textBox9;
     }
 }

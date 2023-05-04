@@ -30,14 +30,14 @@ namespace remake
             this.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
             //text
             this.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
-            this.panel1.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
+           
             this.panel2.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
             //menu
-            this.panel1.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_panel_bg);
+           
             this.panel2.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_panel_bg);
 
 
-            this.panel3.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_ribbon);
+          
 
 
             this.button1.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
@@ -65,7 +65,7 @@ namespace remake
                     break;
             }
 
-            this.checkBox1.Checked = this._currentSetup.NetworkDisabled;
+           
         }
 
 
@@ -77,9 +77,9 @@ namespace remake
         private void button2_Click(object sender, EventArgs e)
         {
             if (radioButton1.Checked)
-                _configMaker.UpdateJson(this.checkBox1.Checked, radioButton1.Text);
+                _configMaker.UpdateJson( radioButton1.Text);
             else
-                _configMaker.UpdateJson(this.checkBox1.Checked, radioButton2.Text);
+                _configMaker.UpdateJson( radioButton2.Text);
 
             this.Close();
         }

@@ -55,7 +55,6 @@ namespace remake
         private EquationMode _equationMode;
 
         // variables used for the application states
-        private Boolean _offlineMode;
         private Boolean _signedIn = false;
 
 
@@ -252,29 +251,22 @@ namespace remake
         /// </summary>
         private void updateApplicationState()
         {
-            if (_offlineMode)
+            if (_signedIn)
             {
-                // hide user login controls and replace them with something else
-
+                // hide sign in and sign up buttons
+                this.signIn_btn.Visible = false;
+                this.signUp_btn.Visible = false;
+                this.signOut_btn.Visible = true;
             }
             else
             {
-                if (_signedIn)
-                {
-                    // hide sign in and sign up buttons
-                    this.signIn_btn.Visible = false;
-                    this.signUp_btn.Visible = false;
-                    this.signOut_btn.Visible = true;
-                }
-                else
-                {
-                    // hide the sign out button
-                    this.signIn_btn.Visible = true;
-                    this.signUp_btn.Visible = true;
+                // hide the sign out button
+                this.signIn_btn.Visible = true;
+                this.signUp_btn.Visible = true;
 
-                    this.signOut_btn.Visible = false;
-                }
+                this.signOut_btn.Visible = false;
             }
+
 
             switch (this._equationMode)
             {
@@ -334,11 +326,11 @@ namespace remake
                     this.textBox8.Visible = false;
                     break;
                 case EquationMode.Integral:
-                    // hide interval
-                    this.label8.Visible = false;
+                    // show interval
+                    this.label8.Visible = true;
 
-                    this.textBox3.Visible = false;
-                    this.textBox4.Visible = false;
+                    this.textBox3.Visible = true;
+                    this.textBox4.Visible = true;
                     // hide genetic algorithm inputs
                     this.label3.Visible = false;
                     this.label7.Visible = false;
@@ -390,10 +382,10 @@ namespace remake
             this.textBox2.Text = string.Empty;
             this.textBox3.Text = string.Empty;
             this.textBox4.Text = string.Empty;
-            this.textBox5.Text = string.Empty;
-            this.textBox6.Text = string.Empty;
-            this.textBox7.Text = string.Empty;
-            this.textBox8.Text = string.Empty;
+            this.textBox5.Text = "1";
+            this.textBox6.Text = "100";
+            this.textBox7.Text = "5";
+            this.textBox8.Text = "100";
         }
 
 
@@ -465,7 +457,7 @@ namespace remake
                     handleCalculator(sender, e);
                     break;
                 case EquationMode.Integral:
-                    // ...
+                    handleIntegral(sender, e);
                     break;
                 default:
                     // ...
@@ -516,36 +508,36 @@ namespace remake
             this._plotView.Visible = true;
             this._plotView.InvalidatePlot(true);
         }
-
-        private void handleEquation(object sender, EventArgs e)
+        private async void handleEquation(object sender, EventArgs e)
         {
             // Get the input parameters from the text boxes
             string equation = this.textBox1.Text;
             string interval_bottom = this.textBox4.Text;
             string interval_top = this.textBox3.Text;
-            string nr_vals = this.textBox4.Text;
+            string nr_vals = this.textBox5.Text;
             string ng_generations = this.textBox6.Text;
             string nr_parents = this.textBox7.Text;
             string population_size = this.textBox8.Text;
 
-            // Set up the Python script arguments
-            string[] args = new string[] { equation, interval_bottom, interval_top, nr_vals, ng_generations, nr_parents, population_size };
+            // Call the equation request parser method using the request handler
+            RequestHandler requestHandler = new RequestHandler();
+            string result = await requestHandler.EquationRequestParserAsync(equation, interval_bottom, interval_top, nr_vals, ng_generations, nr_parents, population_size);
 
-            // Call the Python script and capture the output
-            ProcessStartInfo start = new ProcessStartInfo();
-            start.FileName = "python";
-            start.Arguments = "genetic_algorithm.py " + String.Join(" ", args);
-            start.UseShellExecute = false;
-            start.RedirectStandardOutput = true;
-            using (Process process = Process.Start(start))
-            {
-                using (StreamReader reader = process.StandardOutput)
-                {
-                    string result = reader.ReadToEnd();
-                    // Update the solution in the UI
-                    this.textBox2.Text = result;
-                }
-            }
+            // Update the UI with the result
+            this.textBox2.Text = result;
+        }
+
+        private async void handleIntegral(object sender, EventArgs e)
+        {
+            string function = this.textBox1.Text;
+            string interval_bottom = this.textBox4.Text;
+            string interval_top = this.textBox3.Text;
+            string nr_trapezoids = this.textBox9.Text;
+
+            // Call the equation request parser method using the request handler
+            RequestHandler requestHandler = new RequestHandler();
+            string result = await requestHandler.IntegralRequestParserAsync(function, interval_bottom, interval_top, nr_trapezoids);
+            this.textBox2.Text = result;
         }
 
 
