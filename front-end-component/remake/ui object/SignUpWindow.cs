@@ -1,4 +1,5 @@
 ﻿using MathApp.secondary_objects;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,8 @@ namespace MathApp.ui_object
     public partial class SignUpWindow : Form
     {
         private Setup _currentSetup;
+        private static readonly HttpClient client = new HttpClient();
+
 
         /// <summary>
         /// Default constructor that also initializes the configuration elements
@@ -89,15 +92,51 @@ namespace MathApp.ui_object
 
         /// UI RELATED FUNCTIONS
 
+
+        // Event to pass the user data to the main form
+        public event EventHandler<UserEventArgs> UserSignedUp;
+
         /// <summary>
         /// Function that closes the sign up form and parses a POST request with the data to the user server
         /// </summary>
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
             if (fieldValidator())
             {
-                MessageBox.Show("System: user has been created");
-                this.Close();
+                // Create a user object with the gathered information
+                User user = new User
+                {
+                    Username = textBox1.Text,
+                    Password = textBox2.Text
+                };
+
+                // Serialize the user object to JSON
+                string userJson = JsonConvert.SerializeObject(user);
+
+                // Send a POST request to the user login endpoint
+                HttpResponseMessage response = await client.PostAsync("http://localhost:8082/users/signup", new StringContent(userJson, Encoding.UTF8, "application/json"));
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // User login successful
+                    MessageBox.Show("User login successful");
+
+                    // Read the response content
+                    string responseJson = await response.Content.ReadAsStringAsync();
+
+                    // Deserialize the response to get the logged-in user details
+                    User loggedInUser = JsonConvert.DeserializeObject<User>(responseJson);
+
+                    // Raise the UserSignedUp event to pass the user data to the main form
+                    UserSignedUp?.Invoke(this, new UserEventArgs(loggedInUser));
+
+                    this.Close();
+                }
+                else
+                {
+                    // User login failed
+                    MessageBox.Show("User creation failed");
+                }
             }
         }
 

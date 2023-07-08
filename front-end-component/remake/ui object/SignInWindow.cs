@@ -1,5 +1,7 @@
 ﻿using MathApp.secondary_objects;
 using MathApp.ui_object;
+using Microsoft.VisualBasic.ApplicationServices;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using User = MathApp.secondary_objects.User;
 
 namespace remake
 {
@@ -16,6 +19,12 @@ namespace remake
     public partial class SignInWindow : Form
     {
         private Setup _currentSetup;
+        private static readonly HttpClient client = new HttpClient();
+
+
+        // Event to pass the logged-in user data to the main form
+        public event EventHandler<UserEventArgs> UserLoggedIn;
+
         public SignInWindow(Setup currentSetup)
         {
             InitializeComponent();
@@ -23,31 +32,55 @@ namespace remake
             updateSetup();
         }
 
-
-        /// <summary>
-        /// Function that returns the user object that was initialized (Requires the form to be closed) 
-        /// </summary>
-        private void getCurrentUser()
-        {
-
-        }
-
         /// <summary>
         /// Function that makes a request to the server and logs in the user upon success
         /// </summary>
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-            // This method should make calls to the server if networking is disabled, otherwise it should just not be accesible
-            MessageBox.Show("fake user log in successful");
+            // Create a user object with the gathered information
+            User user = new User
+            {
+                Username = textBox1.Text,
+                Password = textBox2.Text
+            };
 
-            //populating an user object with the information that was gathered from the api
+            // Serialize the user object to JSON
+            string userJson = JsonConvert.SerializeObject(user);
 
+            // Send a POST request to the user login endpoint
+            HttpResponseMessage response = await client.PostAsync("http://localhost:8082/users/login", new StringContent(userJson, Encoding.UTF8, "application/json"));
 
-            this.Close();
+            if (response.IsSuccessStatusCode)
+            {
+                // User login successful
+                MessageBox.Show("User login successful");
+
+                // Read the response content
+                string responseJson = await response.Content.ReadAsStringAsync();
+
+                // Deserialize the response to get the logged-in user details
+                User loggedInUser = JsonConvert.DeserializeObject<User>(responseJson);
+
+                // Raise the UserLoggedIn event to pass the user data to the main form
+                UserLoggedIn?.Invoke(this, new UserEventArgs(loggedInUser));
+
+                this.Close();
+            }
+            else
+            {
+                // User login failed
+                MessageBox.Show("User login failed");
+            }
         }
 
-        private void UserWindow_Load(object sender, EventArgs e)
+        /// <summary>
+        /// Function that opens the SignUpWindow if the user wanted to sign up instead
+        /// </summary>
+        private void button2_Click(object sender, EventArgs e)
         {
+            this.Close();
+            SignUpWindow temporarySignUpWindow = new SignUpWindow(_currentSetup);
+            temporarySignUpWindow.ShowDialog();
 
         }
 
@@ -68,7 +101,6 @@ namespace remake
             this.panel1.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_panel_bg);
             //buttons
             this.button1.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
-            this.button2.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
 
             //textbox
             this.textBox1.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
@@ -104,15 +136,10 @@ namespace remake
 
         }
 
-        /// <summary>
-        /// Function that applies a specific theme to the application
-        /// </summary>
-        private void button2_Click(object sender, EventArgs e)
+        private void UserWindow_Load(object sender, EventArgs e)
         {
-            this.Close();
-            SignUpWindow temporarySignUpWindow = new SignUpWindow(_currentSetup);
-            temporarySignUpWindow.ShowDialog();
 
         }
+
     }
 }

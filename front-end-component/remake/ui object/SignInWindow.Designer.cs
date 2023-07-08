@@ -33,7 +33,6 @@
             panel1 = new Panel();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
-            button2 = new Button();
             button1 = new Button();
             label3 = new Label();
             label2 = new Label();
@@ -65,7 +64,6 @@
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(pictureBox1);
-            panel1.Controls.Add(button2);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
@@ -93,19 +91,6 @@
             pictureBox1.Size = new Size(20, 20);
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
-            // 
-            // button2
-            // 
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.Location = new Point(4, 169);
-            button2.Name = "button2";
-            button2.Size = new Size(200, 30);
-            button2.TabIndex = 6;
-            button2.Text = "Sign Up instead";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
             // 
             // button1
             // 
@@ -168,6 +153,8 @@
             ResumeLayout(false);
         }
 
+
+
         #endregion
 
         private TextBox textBox1;
@@ -177,7 +164,6 @@
         private Label label3;
         private Label label2;
         private Label label1;
-        private Button button2;
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
     }

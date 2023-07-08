@@ -1,0 +1,46 @@
+@startuml
+class com.mathapp.savemanager.Application {
++ {static} void main(String[])
+}
+class com.mathapp.savemanager.Exceptions.ResourceNotFoundException {
+}
+class com.mathapp.savemanager.Controller.RequestController {
+- RequestRepository requestRepository
++ List<Request> getAllRequests()
++ Request getRequestById(String)
++ Request createRequest(Request)
++ Request updateRequest(String,Request)
++ void deleteRequest(String)
++ ResponseEntity<Request> createRequest(String)
++ ResponseEntity<List<Map<String,String>>> getAllRequests(String)
+}
+class com.mathapp.savemanager.Model.Request {
+- String id
+- ObjectId owner
+- String requestType
+- String requestBody
++ String getId()
++ void setId(String)
++ ObjectId getOwner()
++ void setOwner(ObjectId)
++ String getRequestType()
++ void setRequestType(String)
++ String getRequestBody()
++ void setRequestBody(String)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+}
+interface com.mathapp.savemanager.Repository.RequestRepository {
+~ List<Request> findByOwner(ObjectId)
+}
+class com.mathapp.savemanager.config.MongoDBConfig {
+- MongoClient mongoClient
+- MongoTemplate mongoTemplate
++ MongoDatabase mongoDatabase()
+}
+
+
+com.mathapp.savemanager.Exceptions.RuntimeException <|-- com.mathapp.savemanager.Exceptions.ResourceNotFoundException
+org.springframework.data.mongodb.repository.MongoRepository <|-- com.mathapp.savemanager.Repository.RequestRepository
+@enduml

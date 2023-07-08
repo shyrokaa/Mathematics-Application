@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label2 = new Label();
             label1 = new Label();
-            pictureBox1 = new PictureBox();
             panel2 = new Panel();
+            label12 = new Label();
+            textBox9 = new TextBox();
             textBox8 = new TextBox();
             label11 = new Label();
             textBox7 = new TextBox();
@@ -52,10 +52,8 @@
             panel1 = new Panel();
             signUp_btn = new Button();
             signOut_btn = new Button();
-            label9 = new Label();
             signIn_btn = new Button();
             menuStrip1 = new MenuStrip();
-            help = new ToolStripMenuItem();
             about = new ToolStripMenuItem();
             settings = new ToolStripMenuItem();
             button4 = new Button();
@@ -75,9 +73,6 @@
             panel9 = new Panel();
             panel3 = new Panel();
             panel10 = new Panel();
-            textBox9 = new TextBox();
-            label12 = new Label();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -90,32 +85,14 @@
             panel3.SuspendLayout();
             SuspendLayout();
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(89, 28);
-            label2.Name = "label2";
-            label2.Size = new Size(53, 15);
-            label2.TabIndex = 2;
-            label2.Text = "join date";
-            // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(89, 13);
+            label1.Location = new Point(3, 13);
             label1.Name = "label1";
             label1.Size = new Size(30, 15);
             label1.TabIndex = 1;
             label1.Text = "User";
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackColor = SystemColors.ControlDarkDark;
-            pictureBox1.Location = new Point(10, 10);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(60, 60);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
             // 
             // panel2
             // 
@@ -142,6 +119,25 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(412, 133);
             panel2.TabIndex = 5;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label12.Location = new Point(145, 32);
+            label12.Name = "label12";
+            label12.Size = new Size(91, 15);
+            label12.TabIndex = 26;
+            label12.Text = "Nr. of trapezoids";
+            // 
+            // textBox9
+            // 
+            textBox9.BorderStyle = BorderStyle.None;
+            textBox9.Location = new Point(244, 30);
+            textBox9.Multiline = true;
+            textBox9.Name = "textBox9";
+            textBox9.Size = new Size(28, 15);
+            textBox9.TabIndex = 25;
             // 
             // textBox8
             // 
@@ -202,7 +198,7 @@
             textBox5.Size = new Size(28, 15);
             textBox5.TabIndex = 19;
             textBox5.Text = "1";
-            textBox5.TextChanged += textBox5_TextChanged;
+            textBox5.TextChanged += TextBox5_TextChanged;
             // 
             // label7
             // 
@@ -245,7 +241,7 @@
             button10.TabIndex = 4;
             button10.Text = "History";
             button10.UseVisualStyleBackColor = true;
-            button10.Click += button10_Click;
+            button10.Click += Button10_Click;
             // 
             // textBox4
             // 
@@ -286,7 +282,7 @@
             button12.TabIndex = 7;
             button12.Text = "Compute ";
             button12.UseVisualStyleBackColor = true;
-            button12.Click += button12_Click;
+            button12.Click += Button12_Click;
             // 
             // textBox1
             // 
@@ -321,13 +317,10 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(28, 23, 43);
-            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(signUp_btn);
             panel1.Controls.Add(signOut_btn);
-            panel1.Controls.Add(label9);
             panel1.Controls.Add(signIn_btn);
             panel1.Controls.Add(menuStrip1);
-            panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
             panel1.ForeColor = Color.FromArgb(205, 23, 72);
             panel1.Location = new Point(12, 12);
@@ -340,65 +333,50 @@
             signUp_btn.FlatAppearance.BorderSize = 0;
             signUp_btn.FlatStyle = FlatStyle.Flat;
             signUp_btn.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            signUp_btn.Location = new Point(3, 246);
+            signUp_btn.Location = new Point(3, 227);
             signUp_btn.Name = "signUp_btn";
             signUp_btn.Size = new Size(164, 23);
             signUp_btn.TabIndex = 8;
             signUp_btn.Text = "- SignUp -";
             signUp_btn.UseVisualStyleBackColor = true;
-            signUp_btn.Click += signUp_btn_Click;
+            signUp_btn.Click += SignUp_btn_Click;
             // 
             // signOut_btn
             // 
             signOut_btn.FlatAppearance.BorderSize = 0;
             signOut_btn.FlatStyle = FlatStyle.Flat;
-            signOut_btn.Location = new Point(3, 246);
+            signOut_btn.Location = new Point(3, 256);
             signOut_btn.Name = "signOut_btn";
             signOut_btn.Size = new Size(164, 23);
             signOut_btn.TabIndex = 7;
             signOut_btn.Text = "- SignOut -";
             signOut_btn.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(89, 43);
-            label9.Name = "label9";
-            label9.Size = new Size(49, 15);
-            label9.TabIndex = 10;
-            label9.Text = "nr saves";
+            signOut_btn.Click += SignOut_btn_Click_1;
             // 
             // signIn_btn
             // 
             signIn_btn.FlatAppearance.BorderSize = 0;
             signIn_btn.FlatStyle = FlatStyle.Flat;
             signIn_btn.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            signIn_btn.Location = new Point(3, 217);
+            signIn_btn.Location = new Point(3, 198);
             signIn_btn.Name = "signIn_btn";
             signIn_btn.Size = new Size(164, 23);
             signIn_btn.TabIndex = 9;
             signIn_btn.Text = "- SignIn -";
             signIn_btn.UseVisualStyleBackColor = true;
-            signIn_btn.Click += signIn_btn_Click;
+            signIn_btn.Click += SignIn_btn_Click;
             // 
             // menuStrip1
             // 
             menuStrip1.BackColor = Color.FromArgb(65, 49, 76);
             menuStrip1.Dock = DockStyle.Bottom;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { help, about, settings });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { about, settings });
             menuStrip1.Location = new Point(0, 282);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(170, 24);
             menuStrip1.TabIndex = 7;
             menuStrip1.Text = "menuStrip1";
-            menuStrip1.ItemClicked += menuStrip1_ItemClicked;
-            // 
-            // help
-            // 
-            help.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            help.Name = "help";
-            help.Size = new Size(42, 20);
-            help.Text = "Help";
+            menuStrip1.ItemClicked += MenuStrip1_ItemClicked;
             // 
             // about
             // 
@@ -414,7 +392,7 @@
             settings.Name = "settings";
             settings.Size = new Size(59, 20);
             settings.Text = "Settings";
-            settings.Click += settings_Click;
+            settings.Click += Settings_Click;
             // 
             // button4
             // 
@@ -427,7 +405,7 @@
             button4.TabIndex = 6;
             button4.Text = "- Integral -";
             button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
+            button4.Click += Button4_Click;
             // 
             // button3
             // 
@@ -440,7 +418,7 @@
             button3.TabIndex = 5;
             button3.Text = "- Calculator -";
             button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            button3.Click += Button3_Click;
             // 
             // button2
             // 
@@ -453,7 +431,7 @@
             button2.TabIndex = 4;
             button2.Text = "- Equation - ";
             button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            button2.Click += Button2_Click;
             // 
             // button1
             // 
@@ -466,7 +444,7 @@
             button1.TabIndex = 3;
             button1.Text = "- Plot -";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            button1.Click += Button1_Click;
             // 
             // panel4
             // 
@@ -478,7 +456,7 @@
             panel4.Name = "panel4";
             panel4.Size = new Size(529, 264);
             panel4.TabIndex = 7;
-            panel4.Paint += panel4_Paint;
+            panel4.Paint += Panel4_Paint;
             // 
             // chart_panel
             // 
@@ -508,7 +486,7 @@
             button7.TabIndex = 8;
             button7.Text = "Clear";
             button7.UseVisualStyleBackColor = true;
-            button7.Click += button7_Click;
+            button7.Click += Button7_Click;
             // 
             // button11
             // 
@@ -521,7 +499,7 @@
             button11.TabIndex = 5;
             button11.Text = "Save";
             button11.UseVisualStyleBackColor = true;
-            button11.Click += button11_Click;
+            button11.Click += Button11_Click;
             // 
             // panel5
             // 
@@ -601,25 +579,6 @@
             panel10.Size = new Size(810, 2);
             panel10.TabIndex = 11;
             // 
-            // textBox9
-            // 
-            textBox9.BorderStyle = BorderStyle.None;
-            textBox9.Location = new Point(244, 30);
-            textBox9.Multiline = true;
-            textBox9.Name = "textBox9";
-            textBox9.Size = new Size(28, 15);
-            textBox9.TabIndex = 25;
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label12.Location = new Point(145, 32);
-            label12.Name = "label12";
-            label12.Size = new Size(91, 15);
-            label12.TabIndex = 26;
-            label12.Text = "Nr. of trapezoids";
-            // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -639,7 +598,6 @@
             Name = "MainWindow";
             Text = "MainWindow";
             Load += MainWindow_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             panel1.ResumeLayout(false);
@@ -659,9 +617,7 @@
         }
 
         #endregion
-        private Label label2;
         private Label label1;
-        private PictureBox pictureBox1;
         private Panel panel2;
         private Panel panel1;
         private Button button4;
@@ -669,7 +625,6 @@
         private Button button2;
         private Button button1;
         private MenuStrip menuStrip1;
-        private ToolStripMenuItem help;
         private ToolStripMenuItem about;
         private ToolStripMenuItem settings;
         private Panel panel4;
@@ -694,7 +649,6 @@
         private Button signUp_btn;
         private Button signIn_btn;
         private Button signOut_btn;
-        private Label label9;
         private PictureBox pictureBox2;
         private Panel panel3;
         private Panel panel10;

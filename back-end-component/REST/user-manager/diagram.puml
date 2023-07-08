@@ -1,0 +1,46 @@
+@startuml
+class com.mathapp.usermanager.Controller.UserController {
+- UserRepository userRepository
++ List<User> getAllUsers()
++ ResponseEntity<User> getUserById(String)
++ User createUser(User)
++ ResponseEntity<User> updateUser(String,User)
++ ResponseEntity<HttpStatus> deleteUser(String)
++ ResponseEntity<User> loginUser(String)
++ ResponseEntity<User> signupUser(String)
++ ResponseEntity<String> getUserId(String)
+}
+interface com.mathapp.usermanager.Repository.UserRepository {
+~ User findByUsernameAndPassword(String,String)
+~ boolean existsByUsername(String)
+~ User findByUsername(String)
+}
+class com.mathapp.usermanager.Exceptions.ResourceNotFoundException {
+}
+class com.mathapp.usermanager.Model.User {
+- String id
+- String username
+- String password
++ String getId()
++ void setId(String)
++ String getUsername()
++ void setUsername(String)
++ String getPassword()
++ void setPassword(String)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+}
+class com.mathapp.usermanager.config.MongoDBConfig {
+- MongoClient mongoClient
+- MongoTemplate mongoTemplate
++ MongoDatabase mongoDatabase()
+}
+class com.mathapp.usermanager.Application {
++ {static} void main(String[])
+}
+
+
+org.springframework.data.mongodb.repository.MongoRepository <|-- com.mathapp.usermanager.Repository.UserRepository
+com.mathapp.usermanager.Exceptions.RuntimeException <|-- com.mathapp.usermanager.Exceptions.ResourceNotFoundException
+@enduml

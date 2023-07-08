@@ -1,41 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
-using MathApp.parsers;
-using MathApp.Properties;
+﻿using MathApp.parsers;
 using MathApp.secondary_objects;
 using MathApp.ui_object;
-using MathNet.Numerics.LinearAlgebra.Factorization;
-using Microsoft.VisualBasic.Logging;
-using NCalc;
+using Newtonsoft.Json;
 using OxyPlot;
 using OxyPlot.Series;
 using OxyPlot.WindowsForms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Text;
 
 
 namespace remake
 {
 
-
     // helper for the equation mode handling
     public enum EquationMode
     {
-        Plot,
-        Equation,
-        Calculator,
-        Integral
+        PLOT,
+        EQUATION,
+        CALCULATOR,
+        INTEGRAL
     }
 
     /// <summary>
@@ -43,24 +25,22 @@ namespace remake
     /// </summary>
     public partial class MainWindow : Form
     {
-
-        // this handles the modes in which the application is running
-        private int _selectedMode;
-
-
-        private JsonParser _configMaker;
-        private Setup _currentSetup;
-
-
+        // UI windows
+        private SignInWindow _signInWindow;
+        private SignUpWindow _signUpWindow;
+        private HistoryWindow _historyWindow;
+        
+        // modes
         private EquationMode _equationMode;
 
-        // variables used for the application states
+        // helpers and other variables
+        private readonly PlotModel _plotModel;
+        private readonly PlotView _plotView;
+        private readonly JsonParser _configMaker;
+        private Setup _currentSetup;
+
         private Boolean _signedIn = false;
-
-
-        // chart used in the data display - added here due to the toolbox not being able to see the refference to it
-        private PlotModel _plotModel;
-        private PlotView _plotView;
+        private MathApp.secondary_objects.User _currentUser;
 
 
         /// <summary>
@@ -70,43 +50,40 @@ namespace remake
         {
             this._configMaker = new JsonParser();
             InitializeComponent();
+
+            // initialize parsers/plotters/etc
             this._currentSetup = _configMaker.ParseData();
             this._equationMode = 0;
-
             this._plotModel = new PlotModel();
             this._plotView = new PlotView();
-
             this._plotView.Model = this._plotModel;
-
             this._plotView.Dock = DockStyle.Fill;
             this.chart_panel.Controls.Add(this._plotView);
 
             // Add an empty series to the plot model
             this._plotModel.Series.Add(new LineSeries());
 
-            updateSetup();
-            updateApplicationState();
+            UpdateSetup();
+            UpdateApplicationState();
         }
-
-
 
         // API ACCESS RELATED FUNCTIONS
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void MenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }
 
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        private void FlowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void flowLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
+        private void FlowLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void flowLayoutPanel1_Paint_2(object sender, PaintEventArgs e)
+        private void FlowLayoutPanel1_Paint_2(object sender, PaintEventArgs e)
         {
 
         }
@@ -117,20 +94,20 @@ namespace remake
         /// <summary>
         /// Function that opens the settings menu
         /// </summary>
-        private void settings_Click(object sender, EventArgs e)
+        private void Settings_Click(object sender, EventArgs e)
         {
             OptionsWindow temporaryOptionWindow = new OptionsWindow(this._currentSetup);
             temporaryOptionWindow.ShowDialog();
 
             this._currentSetup = _configMaker.ParseData();
-            this.updateSetup();
+            this.UpdateSetup();
         }
 
 
         /// <summary>
         /// Opens the SignIn Window
         /// </summary>
-        private void button8_Click_1(object sender, EventArgs e)
+        private void Button8_Click_1(object sender, EventArgs e)
         {
             SignInWindow temporarySignInWindow = new SignInWindow(this._currentSetup);
             temporarySignInWindow.ShowDialog();
@@ -140,19 +117,18 @@ namespace remake
         /// <summary>
         /// Opens the SignUp Window
         /// </summary>
-        private void button9_Click(object sender, EventArgs e)
+        private void Button9_Click(object sender, EventArgs e)
         {
             SignUpWindow temporarySignUpWindow = new SignUpWindow(_currentSetup);
             temporarySignUpWindow.ShowDialog();
         }
-
 
         /// CUSTOMIZATION RELATED FUNCTIONS
 
         /// <summary>
         /// Function that applies a specific theme to the application
         /// </summary>
-        private void applyTheme(ColorScheme c)
+        private void ApplyTheme(ColorScheme c)
         {
             //background colors
             this.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
@@ -189,6 +165,7 @@ namespace remake
             this.textBox6.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
             this.textBox7.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
             this.textBox8.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
+            this.textBox9.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_bg);
 
             this.textBox1.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
             this.textBox2.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
@@ -198,6 +175,7 @@ namespace remake
             this.textBox6.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
             this.textBox7.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
             this.textBox8.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
+            this.textBox9.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
 
             //menu colors
             this.menuStrip1.BackColor = System.Drawing.ColorTranslator.FromHtml(c.form_menu_bg);
@@ -213,7 +191,7 @@ namespace remake
         }
 
 
-        private void setButtonTheme(ColorScheme c)
+        private void SetButtonTheme(ColorScheme c)
         {
             this.button1.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
             this.button2.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_text);
@@ -223,19 +201,19 @@ namespace remake
 
             switch (this._equationMode)
             {
-                case EquationMode.Plot:
+                case EquationMode.PLOT:
                     this.button1.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_ribbon);
                     break;
 
-                case EquationMode.Equation:
+                case EquationMode.EQUATION:
                     this.button2.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_ribbon);
                     break;
 
-                case EquationMode.Calculator:
+                case EquationMode.CALCULATOR:
                     this.button3.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_ribbon);
                     break;
 
-                case EquationMode.Integral:
+                case EquationMode.INTEGRAL:
                     this.button4.ForeColor = System.Drawing.ColorTranslator.FromHtml(c.form_ribbon);
                     break;
 
@@ -249,7 +227,7 @@ namespace remake
         /// <summary>
         /// Function that updates the interface components based on the user login state and the equation mode that is selected
         /// </summary>
-        private void updateApplicationState()
+        private void UpdateApplicationState()
         {
             if (_signedIn)
             {
@@ -257,20 +235,34 @@ namespace remake
                 this.signIn_btn.Visible = false;
                 this.signUp_btn.Visible = false;
                 this.signOut_btn.Visible = true;
+
+                //show user name display and picture
+                this.label1.Visible = true;
+
+
+                //change the text to what user is signed in currently
+                this.label1.Text = "Hello, " + this._currentUser.Username + " !";
+
             }
             else
             {
                 // hide the sign out button
                 this.signIn_btn.Visible = true;
                 this.signUp_btn.Visible = true;
-
                 this.signOut_btn.Visible = false;
+
+
+                // hide user name display and picture
+                this.label1.Visible = false;
+
+
+
             }
 
 
             switch (this._equationMode)
             {
-                case EquationMode.Plot:
+                case EquationMode.PLOT:
                     // show interval
                     this.label8.Visible = true;
 
@@ -287,8 +279,12 @@ namespace remake
                     this.textBox7.Visible = false;
                     this.textBox8.Visible = false;
 
+                    //hide the integral
+                    this.label12.Visible = false;
+                    this.textBox9.Visible = false;
+
                     break;
-                case EquationMode.Equation:
+                case EquationMode.EQUATION:
                     // show interval
                     this.label8.Visible = true;
 
@@ -306,9 +302,11 @@ namespace remake
                     this.textBox7.Visible = true;
                     this.textBox8.Visible = true;
 
-
+                    //hide the integral
+                    this.label12.Visible = false;
+                    this.textBox9.Visible = false;
                     break;
-                case EquationMode.Calculator:
+                case EquationMode.CALCULATOR:
                     // hide interval
                     this.label8.Visible = false;
 
@@ -324,13 +322,24 @@ namespace remake
                     this.textBox6.Visible = false;
                     this.textBox7.Visible = false;
                     this.textBox8.Visible = false;
+
+                    //hide the integral
+                    this.label12.Visible = false;
+                    this.textBox9.Visible = false;
+
                     break;
-                case EquationMode.Integral:
+                case EquationMode.INTEGRAL:
                     // show interval
                     this.label8.Visible = true;
 
                     this.textBox3.Visible = true;
                     this.textBox4.Visible = true;
+
+                    //show integral specific controls
+                    this.label12.Visible = true;
+                    this.textBox9.Visible = true;
+
+
                     // hide genetic algorithm inputs
                     this.label3.Visible = false;
                     this.label7.Visible = false;
@@ -341,42 +350,44 @@ namespace remake
                     this.textBox6.Visible = false;
                     this.textBox7.Visible = false;
                     this.textBox8.Visible = false;
+
+
+
                     break;
             }
         }
-
 
 
         /// <summary>
         /// Function that applies the current configuration for the app
         /// </summary>
-        private void updateSetup()
+        private void UpdateSetup()
         {
             switch (this._currentSetup.SelectedTheme)
             {
                 case "Dark":
                     //applying dark theme
-                    applyTheme(this._currentSetup.DarkTheme);
-                    setButtonTheme(this._currentSetup.DarkTheme);
+                    ApplyTheme(this._currentSetup.DarkTheme);
+                    SetButtonTheme(this._currentSetup.DarkTheme);
                     this.pictureBox2.Image = _currentSetup.DarkLogo;
 
                     break;
                 case "Light":
                     //applying white theme
-                    applyTheme(this._currentSetup.LightTheme);
-                    setButtonTheme(this._currentSetup.LightTheme);
+                    ApplyTheme(this._currentSetup.LightTheme);
+                    SetButtonTheme(this._currentSetup.LightTheme);
                     this.pictureBox2.Image = _currentSetup.LightLogo;
                     break;
             }
 
             //user panel update -> too many controls for one function
-            updateUserPanel(!this._currentSetup.NetworkDisabled);
+            UpdateUserPanel(!this._currentSetup.NetworkDisabled);
             //equation mode handler -> used for the equation solving process
 
         }
 
 
-        private void resetTextBoxes()
+        private void ResetTextBoxes()
         {
             this.textBox1.Text = string.Empty;
             this.textBox2.Text = string.Empty;
@@ -392,81 +403,132 @@ namespace remake
         /// <summary>
         /// Function that updates the user panel depending on the network configuration of the app
         /// </summary>
-        private void updateUserPanel(bool isEnabled)
+        private void UpdateUserPanel(bool isEnabled)
         {
             this.signOut_btn.Visible = isEnabled;
             this.signIn_btn.Visible = isEnabled;
             this.signUp_btn.Visible = isEnabled;
 
-            this.pictureBox1.Visible = isEnabled;
+
             this.label1.Visible = isEnabled;
-            this.label2.Visible = isEnabled;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
-            this._equationMode = EquationMode.Plot;
-            updateSetup();
-            updateApplicationState();
-            resetTextBoxes();
+            this._equationMode = EquationMode.PLOT;
+            UpdateSetup();
+            UpdateApplicationState();
+            ResetTextBoxes();
 
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
-            this._equationMode = EquationMode.Equation;
-            updateSetup();
-            updateApplicationState();
-            resetTextBoxes();
+            this._equationMode = EquationMode.EQUATION;
+            UpdateSetup();
+            UpdateApplicationState();
+            ResetTextBoxes();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
-            this._equationMode = EquationMode.Calculator;
-            updateSetup();
-            updateApplicationState();
-            resetTextBoxes();
+            this._equationMode = EquationMode.CALCULATOR;
+            UpdateSetup();
+            UpdateApplicationState();
+            ResetTextBoxes();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void Button4_Click(object sender, EventArgs e)
         {
-            this._equationMode = EquationMode.Integral;
-            updateSetup();
-            updateApplicationState();
-            resetTextBoxes();
+            this._equationMode = EquationMode.INTEGRAL;
+            UpdateSetup();
+            UpdateApplicationState();
+            ResetTextBoxes();
         }
 
-
-
-        //this is the function that sends requests based on the equation mode
-        private void button12_Click(object sender, EventArgs e)
+        // this is the function that sends requests based on the equation mode
+        private void Button12_Click(object sender, EventArgs e)
         {
+            // Requests are sent to their specific handlers
             switch (this._equationMode)
             {
-                case EquationMode.Plot:
-                    // Get the function string from textbox1
-                    handlePlot(sender, e);
+                case EquationMode.PLOT:
+                    HandlePlot(sender, e);
                     break;
-
-                // Code for other cases
-                case EquationMode.Equation:
-                    handleEquation(sender, e);
+                case EquationMode.EQUATION:
+                    HandleEquation(sender, e);
                     break;
-                case EquationMode.Calculator:
-                    handleCalculator(sender, e);
+                case EquationMode.CALCULATOR:
+                    HandleCalculator(sender, e);
                     break;
-                case EquationMode.Integral:
-                    handleIntegral(sender, e);
+                case EquationMode.INTEGRAL:
+                    HandleIntegral(sender, e);
                     break;
                 default:
-                    // ...
                     break;
+            }
+
+            // Automatically save the requested data if a user is logged in
+            if (this._signedIn)
+            {
+                try
+                {
+                    // Step 1: Get the ID of the user that made the request
+                    HttpClient client = new HttpClient();
+                    string username = this._currentUser.Username;
+
+                    // Create a dictionary to hold the username
+                    Dictionary<string, string> usernameDict = new Dictionary<string, string>()
+                    {
+                        { "Username", username }
+                    };
+
+                    // Serialize the dictionary to JSON
+                    string usernameJson = JsonConvert.SerializeObject(usernameDict);
+
+                    // Send a POST request to the /get_id endpoint to retrieve the user ID
+                    var userIdResponse = client.PostAsync("http://localhost:8082/users/get_id", new StringContent(usernameJson, Encoding.UTF8, "application/json")).Result;
+                    string userId = userIdResponse.Content.ReadAsStringAsync().Result.Trim('"');
+
+                    // Step 2: Create the request body for the POST request
+                    Request newRequest = new Request
+                    {
+                        Owner = userId,
+                        RequestType = this._equationMode.ToString(),
+                        RequestBody = textBox1.Text // Replace with the actual request body
+                    };
+
+                    // Step 3: Serialize the request object to JSON
+                    string requestJson = JsonConvert.SerializeObject(newRequest);
+                    var content = new StringContent(requestJson, Encoding.UTF8, "application/json");
+
+                    // Send a POST request to the save-file server to save the request
+                    var response = client.PostAsync("http://localhost:8083/requests/save", content).Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Request saved successfully
+                        MessageBox.Show("Request saved successfully");
+                    }
+                    else
+                    {
+                        // Request save failed
+                        MessageBox.Show("Failed to save request");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Handle any exceptions that occur during the request saving process
+                    MessageBox.Show("An error occurred while saving the request: " + ex.Message);
+                }
             }
         }
 
 
-        private void handlePlot(object sender, EventArgs e)
+
+
+        private void HandlePlot(object sender, EventArgs e)
         {
             string functionString = this.textBox1.Text;
 
@@ -508,7 +570,7 @@ namespace remake
             this._plotView.Visible = true;
             this._plotView.InvalidatePlot(true);
         }
-        private async void handleEquation(object sender, EventArgs e)
+        private async void HandleEquation(object sender, EventArgs e)
         {
             // Get the input parameters from the text boxes
             string equation = this.textBox1.Text;
@@ -527,7 +589,7 @@ namespace remake
             this.textBox2.Text = result;
         }
 
-        private async void handleIntegral(object sender, EventArgs e)
+        private async void HandleIntegral(object sender, EventArgs e)
         {
             string function = this.textBox1.Text;
             string interval_bottom = this.textBox4.Text;
@@ -542,7 +604,7 @@ namespace remake
 
 
 
-        private void handleCalculator(object sender, EventArgs e)
+        private void HandleCalculator(object sender, EventArgs e)
         {
             string mathExpression = this.textBox1.Text;
 
@@ -562,16 +624,19 @@ namespace remake
         }
 
 
-        private void button7_Click(object sender, EventArgs e)
+        private void Button7_Click(object sender, EventArgs e)
         {
             // Clear the plot series
             this._plotView.Model.Series.Clear();
 
             // Refresh the plot
             this._plotView.InvalidatePlot(true);
+
+            this.textBox2.Text = " ";
+        
         }
 
-        private void button11_Click(object sender, EventArgs e)
+        private void Button11_Click(object sender, EventArgs e)
         {
             // Create a SaveFileDialog to prompt the user for a save location
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -611,7 +676,7 @@ namespace remake
             }
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void Label3_Click(object sender, EventArgs e)
         {
 
         }
@@ -621,40 +686,184 @@ namespace remake
 
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void Button10_Click(object sender, EventArgs e)
         {
             if (!this._signedIn)
             {
                 MessageBox.Show("Please Sign In in order to access your command history!");
             }
+            else
+            {
+                try
+                {
+                    // getting the request history from the server
+
+                    //step 1: getting the user id
+
+                    string username = this._currentUser.Username;
+
+                    // Create a dictionary to hold the username
+                    Dictionary<string, string> usernameDict = new Dictionary<string, string>()
+                    {
+                        { "Username", username }
+                    };
+
+                    HttpClient client = new HttpClient();
+                    // Serialize the dictionary to JSON
+                    string usernameJson = JsonConvert.SerializeObject(usernameDict);
+
+                    // Send a POST request to the /get_id endpoint to retrieve the user ID
+                    var userIdResponse = client.PostAsync("http://localhost:8082/users/get_id", new StringContent(usernameJson, Encoding.UTF8, "application/json")).Result;
+                    string userId = userIdResponse.Content.ReadAsStringAsync().Result.Trim('"');
+
+                    // step 2: turning the user id into a JSON for the request
+                    var userIdJson = new { Owner = userId };
+                    string userIdJsonString = JsonConvert.SerializeObject(userIdJson);
+
+
+                    // step 3: getting the request history for the specific user
+
+                    var content = new StringContent(userIdJsonString, Encoding.UTF8, "application/json");
+                    var response = client.PostAsync("http://localhost:8083/requests/get_all_requests", content).Result;
+
+
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Retrieve the request history from the response body
+                        var responseBody = response.Content.ReadAsStringAsync().Result;
+                        List<SimplifiedRequest> requestHistory = JsonConvert.DeserializeObject<List<SimplifiedRequest>>(responseBody);
+
+                        // Open the history window and pass the request history
+                        _historyWindow = new HistoryWindow(requestHistory, this._currentSetup);
+                        _historyWindow.LoadRequest += HistoryWindow_ObjectLoaded;
+                        _historyWindow.ShowDialog();
+
+
+                    }
+                    else
+                    {
+                        // Failed to retrieve request history
+                        MessageBox.Show("Failed to retrieve request history");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Handle any exceptions that occur during the request history retrieval process
+                    MessageBox.Show("An error occurred while retrieving the request history: " + ex.Message);
+                }
+            }
         }
 
 
-
-
-        private void signIn_btn_Click(object sender, EventArgs e)
+        private void SignIn_btn_Click(object sender, EventArgs e)
         {
-            SignInWindow temporarySignInWindow = new SignInWindow(this._currentSetup);
-            temporarySignInWindow.ShowDialog();
+            _signInWindow = new SignInWindow(this._currentSetup);
+            _signInWindow.UserLoggedIn += SignInWindow_UserLoggedIn;
+            _signInWindow.ShowDialog();
         }
 
-        private void signUp_btn_Click(object sender, EventArgs e)
+        private void SignUp_btn_Click(object sender, EventArgs e)
         {
-            SignUpWindow temporarySignUpWindow = new SignUpWindow(this._currentSetup);
-            temporarySignUpWindow.ShowDialog();
+            _signUpWindow = new SignUpWindow(this._currentSetup);
+            _signUpWindow.UserSignedUp += SignUpWindow_UserSignedUp;
+            _signUpWindow.ShowDialog();
         }
 
-        private void textBox5_TextChanged(object sender, EventArgs e)
+        // EVENTS
+
+        private void SignInWindow_UserLoggedIn(object sender, UserEventArgs e) //basically an function that is called when the sign in window closes - event
+        {
+            // Handle the logged-in user data received from the SignInWindow
+            MathApp.secondary_objects.User loggedInUser = e.User;
+            // Use the user data as needed in the main form
+
+            // Unsubscribe from the UserLoggedIn event
+            _signInWindow.UserLoggedIn -= SignInWindow_UserLoggedIn;
+
+            //adding information to the window objects and updating the interface accordingly
+            this._signedIn = true;
+            this._currentUser = loggedInUser;
+
+            UpdateApplicationState();
+
+        }
+
+        private void SignUpWindow_UserSignedUp(object sender, UserEventArgs e)
+        {
+            // Handle the logged-in user data received from the SignInWindow
+            MathApp.secondary_objects.User loggedInUser = e.User;
+            // Use the user data as needed in the main form
+
+            // Unsubscribe from the UserSignedUp event
+            _signUpWindow.UserSignedUp -= SignUpWindow_UserSignedUp;
+
+            
+
+            // Adding information to the window objects and updating the interface accordingly
+            this._signedIn = true;
+            this._currentUser = loggedInUser;
+
+            UpdateApplicationState();
+        }
+
+        private void HistoryWindow_ObjectLoaded(object sender, LoadEventArgs e)
+        {
+            // Handle the logged-in user data received from the SignInWindow
+            MathApp.secondary_objects.SimplifiedRequest request = e.SimplifiedRequest;
+            // Use the user data as needed in the main form
+
+            // Unsubscribe from the UserSignedUp event
+            _historyWindow.LoadRequest -= HistoryWindow_ObjectLoaded;
+
+
+            // Switching to the proper work panel and request
+
+            switch(request.RequestType)
+            {
+                case "Plot":
+                    break;
+                    this._equationMode = EquationMode.PLOT;
+                case "Calculator":
+                    this._equationMode = EquationMode.CALCULATOR;
+                    break;
+                case "Equation":
+                    this._equationMode = EquationMode.EQUATION;
+                    break;
+                case "Integral":
+                    this._equationMode = EquationMode.INTEGRAL;
+                    break;
+            }
+
+            UpdateSetup();
+            UpdateApplicationState();
+            ResetTextBoxes();
+
+            textBox1.Text = request.RequestBody;
+
+          
+        }
+
+
+
+        private void SignOut_btn_Click_1(object sender, EventArgs e)
+        {
+            this._signedIn = false;
+            MessageBox.Show("You have signed out");
+            UpdateApplicationState();
+        }
+
+        private void TextBox5_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void panel4_Paint(object sender, PaintEventArgs e)
+        private void Panel4_Paint(object sender, PaintEventArgs e)
         {
 
         }
+
     }
-
 
 }
 

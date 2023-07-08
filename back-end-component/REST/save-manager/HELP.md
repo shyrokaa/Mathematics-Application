@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'com.math-app.save-manager.' is invalid and this project uses 'com.mathapp.savemanager' instead.
+* The original package name 'com.math-app.user-manager.' is invalid and this project uses 'com.mathapp.usermanager' instead.
 
 # Getting Started
 
